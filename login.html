@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>藏宝网 - 登&nbsp;&nbsp;&nbsp;录</title>
+    <meta name="keywords" content="藏宝网">
+    <meta name="description" content="藏宝网">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_861103_ef715aqf8gu.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/log-reg.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <header>
+        <div class="h-contain contain">
+            <h1 class="site-logo">
+                <a href="http://localhost:8998/cangbaoProject/">
+                    <img src="imgs/logo.png" alt="">
+                </a>
+            </h1>
+            <div class="site-regist">
+                <img src="imgs/default_user_portrait.gif" alt="">
+                <p>您好，欢迎来到藏宝网</p>
+                <p>已注册的会员请登录，或立即&nbsp;&nbsp;<a href="register.html">注册新会员</a></p>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="s-contain contain">
+            <div class="sec-left"><img src="imgs/login-sec-left01.png" alt=""></div>
+            <div class="sec-logReg">
+                <div class="sec-logReg-up"></div>
+                <ul class="sec-logReg-way">
+                    <li class="show-title show-form-user">用户登录</li>
+                    <li class="hide-title show-form-phone">手机动态码登录</li>
+                </ul>
+                <div class="logReg-form-box">
+                    <form action="" class="logReg-form-user show" autocomplete="off">
+                        <div class="user-box inp-box">
+                            <label for="username">账&nbsp&nbsp&nbsp号&nbsp:</label>
+                            <input type="text" id="username" tipmsg="可使用已注册的用户名或手机号登录" 
+                                regmsg="^[0-9a-zA-Z]{5,13}$" value="可使用已注册的用户名或手机号登录">
+                        </div>
+                        <div class="pass-box inp-box">
+                            <label for="password">密&nbsp&nbsp&nbsp码&nbsp:</label>
+                            <input type="text" id="password" tipmsg="6-20个大小写英文字母、符号或数字"
+                                regmsg="^[0-9a-zA-Z]{6,20}$" value="6-20个大小写英文字母、符号或数字"
+                                autocomplete="off">
+                        </div>
+                        <div class="check-box inp-box">
+                            <label for="checkcode">验证码&nbsp:</label>
+                            <input type="text" id="checkcode" tipmsg="输入验证码" value="输入验证码">
+                            <div class="code"></div>
+                        </div>
+                        <div class="handle-box">
+                            <div class="auto-logReg"><input type="checkBox"><span>七天自动登录</span></div>
+                            <span class="auto-logReg-tip">请勿在公用电脑上使用</span>
+                            <a href="javascript:">忘记密码？</a>
+                        </div>
+                        <button type="button" class="logReg-btn">登&nbsp&nbsp&nbsp录</button>
+                    </form>
+                    <form action="" class="logReg-form-phone">
+                        <div class="user-box inp-box focus-inp">
+                            <label for="phone">手机号&nbsp:</label>
+                            <input type="text" id="phone" tipmsg="可填写已注册的手机号接收短信" 
+                                value="可填写已注册的手机号接收短信">
+                        </div>
+                        <div class="check-box inp-box focus-inp">
+                            <label for="phone-checkcode">验证码&nbsp:</label>
+                            <input type="text" id="phone-checkcode" tipmsg="输入验证码" value="输入验证码">
+                            <div class="code"></div>
+                        </div>
+                        <div class="tip-phone">
+                            正确输入上方验证码后，点击 <span><i class="iconfont icon-shouji"></i><a href="javascript:">发送手机动态码</a></span>，查收短信将系统发送的“6位手机动态码”输入到下方验证后登录。
+                        </div>
+                        <div class="user-box inp-box focus-inp">
+                            <label for="phone-code">动态码&nbsp:</label>
+                            <input type="text" id="phone-code" tipmsg="输入6位手机动态码" 
+                                value="输入6位手机动态码">
+                        </div>
+                        <button class="logReg-btn">登&nbsp&nbsp&nbsp录</button>
+                    </form>
+                </div>
+                <div class="other-way">
+                    <p>使用合作网站账号登录：</p>
+                    <a href="javascript:"><i class="iconfont icon-moff-qq"></i><span>QQ</span></a>
+                    <a href="javascript:"><i class="iconfont icon-weixing"></i><span>微信</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="f-contain contain">
+            <div class="right-flag">
+                <a href="javascript:"><img src="imgs/credit-flag3.png" alt=""></a>
+                <a href="javascript:"><img src="imgs/isc2.png" alt=""></a>
+            </div>
+            <div class="about-us">
+                <p>返回首页<i>|</i>电信增值业务经营许可证<i>|</i>出版物经营许可证<i>|</i>网络文化经营许可证<i>|</i>公司简介<i>|</i>友情链接</p>
+                <p>CopyRight © 2016-2017 藏宝网 甘B2-20140002-1 | 甘B2-20140002-2www.zangbooo.com 版权所有 客户服务中心(7×24):0941-8257726</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/jquery.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/cookie.js"></script>
+    <script src="js/encypt/encypt.js"></script>
+    <script src="js/login_reg.js"></script>
+    <script>
+        login_reg.init(".logReg-form-user","login");
+        $(".show-form-user").on("click",function(){
+            $(this).addClass("show-title");
+            $(".show-form-phone").removeClass("show-title");
+            $(".logReg-form-user").addClass("show");
+            $(".logReg-form-phone").removeClass("show");
+        });
+        $(".show-form-phone").on("click",function(){
+            $(this).addClass("show-title");
+            $(".show-form-user").removeClass("show-title");
+            $(".logReg-form-user").removeClass("show");
+            $(".logReg-form-phone").addClass("show");
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+.site-regist{width: 180px;padding-top: 50px;}
+.site-regist>img{width: 40px;height: 40px;border-radius: 50%;float: left;margin-right: 8px;}
+.site-regist a{color: #0066cc;font-weight: bold;transition: 0.3s;}
+.site-regist a:hover{color: #F32613;}
+
+section{background: url("../imgs/register_bg.png") repeat-x 50px 0;height: 618px;padding-top: 60px;
+    margin-bottom: 0;}
+.s-contain{width: 860px;height: 560px;margin: 0 auto;border: 10px solid rgba(0, 0, 0, 0.15);
+    background-color: #fff;}
+.s-contain .sec-logReg{float: left;width: 619px;border: none;}
+.s-contain .sec-logReg .sec-logReg-way{width: 580px;}
+.s-contain .sec-logReg .logReg-form-box{width: 398px;margin: 60px auto 26px;}
+.s-contain .logReg-form-box .inp-box input{width: 270px;}
+.s-contain .logReg-form-box .check-box{width: 256px;}
+.s-contain .logReg-form-box .check-box input{width: 100px;}
+.s-contain .logReg-form-box .handle-box a{float: none;}
+.s-contain .sec-right{float: right;height: 520px;width: 238px;margin-top: 20px;
+    border-left: 1px solid #e6e6e6;font-size: 14px;}
+.s-contain .sec-right .other-login{color: #333;margin: 0 18px;border-bottom: 1px dashed #e6e6e6;}
+.s-contain .sec-right .other-login p{line-height: 48px;}
+.s-contain .sec-right .other-login a{display: inline-block;width: 40px;height: 40px;text-align: center;
+    line-height: 40px;border: 1px solid #3eb6e8;border-radius: 50%;color: #3eb6e8;
+    margin: 0 12px 20px;}
+.s-contain .sec-right .other-login a i{font-size: 24px;}
+.s-contain .sec-right .other-login a:nth-of-type(2){border-color: #4ea335;color: #4ea335;margin: 0;}
+.s-contain .sec-right .reg-after{margin-left: 18px;}
+.s-contain .sec-right .reg-after p{line-height: 48px;}
+.s-contain .sec-right .reg-after ul li{line-height: 25px;margin: 7px 0;font-size: 12px;color: #999;}
+.s-contain .sec-right .reg-after ul li i{display: block;width: 24px;height: 24px;float: left;
+    margin: 0 7px;background: url("../imgs/login_pic.png") no-repeat 0 -76px;}
+.s-contain .sec-right .reg-after ul li:nth-of-type(2) i{background-position-x: -30px;}
+.s-contain .sec-right .reg-after ul li:nth-of-type(3) i{background-position-x: -60px;}
+.s-contain .sec-right .reg-after ul li:nth-of-type(4) i{background-position-x: -90px;}
+.s-contain .sec-right .reg-after ul li:nth-of-type(5) i{background-position-x: -120px;}
+.s-contain .sec-right .reg-after ul li:nth-of-type(6) i{background-position-x: -150px;}

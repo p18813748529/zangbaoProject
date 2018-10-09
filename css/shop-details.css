@@ -1,0 +1,100 @@
+
+body{background: #eee;}
+.shop{width: 800px;margin: 50px auto;border: 1px solid #999;border-radius: 20px;padding: 10px;
+    background-color: #fff;}
+.shop .shop-img{float: left;}
+/* .shop .shop-img img{float: left;} */
+.shop .shop-data{float: left;}
+.shop .shop-data span{line-height: 30px;}
+.shop .shop-name{font-size: 16px;color: #333;font-weight: bold;}
+.shop .shop-market-price{text-decoration: line-through;}
+.shop .shop-price{color: red;font-size: 20px;}
+.shop .count{position: relative;margin-bottom: 5px;}
+.shop .count input{
+    color: #333;
+    font-family: Tahoma;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 41px;
+    text-align: center;
+    height: 41px;
+    width: 41px;
+    padding: 0;
+    border: solid 1px #eee;
+    background-color: #FFF;
+    display: inline-block;
+}
+.shop .count span{
+    background-color: #FFF;
+    background: url(../imgs/2014_ncs_public_img.png) no-repeat;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #eee;
+    border-left: none;
+    position: absolute;
+    left: 42px;
+    cursor: pointer;
+}
+.shop .count .add{
+    background-position: -100px -100px;
+    top: 0;
+}
+.shop .count .reduce{
+    background-position: -120px -100px;
+    top: 21px;
+}
+.shop .box{
+    position: relative;
+}
+.shop .box button{
+    outline: none;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    width: 100px;
+    height: 42px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.shop .box .add-to-car{
+    background: #fc3601;
+}
+.shop .box .add-to-car:hover{
+    background: #cf0010;
+}
+.shop .box .buy{
+    background: #ba7538;
+}
+.shop .box .buy:hover{
+    background: #96602e;
+}
+.shop .box .tip-box{
+    text-align: center;
+    width: 320px;
+    height: 100px;
+    border: solid 1px #eee;
+    box-shadow: 0 0 3px rgba(153, 153, 153, .25);
+    position: absolute;
+    bottom: -100px;
+    color: #333;
+    background: #f5f5f5;
+    line-height: 40px;
+    display: none;
+}
+.shop .box .tip-box span{
+    display: inline-block;
+    color: #fff;
+    font-size: 12px;
+    padding: 6px;
+    line-height: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.shop .box .tip-box .go-to-car{
+    background: #48cfae;
+}
+.shop .box .tip-box .go-on-buy{
+    background: #ccd0d9;
+}

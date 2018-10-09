@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商品详情页</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_861103_ef715aqf8gu.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/shop-details.css">
+</head>
+<body>
+    <header>
+        <div class="top">
+            <div class="con">
+                <div class="top-left fl">
+                    <span class="fl">您好，欢迎来到 <em>藏宝网</em></span>
+                    <ul class="fl">
+                        <li><a href="javascript:" class="o-login"><i class="iconfont icon-moff-qq"></i></a></li>
+                        <li><a href="javascript:" class="o-login"><i class="iconfont icon-weixing"></i></a></li>
+                        <li><a href="login.html">[<em>登录</em>]</a></li>
+                        <li><a href="register.html"><em>[注册]</em></a></li>
+                    </ul>
+                    <p>欢迎,<em></em>,购物愉快！<a href="javascript:" id="sign-out">退出登录</a></p>
+                </div>
+                <ul class="top-right fr">
+                    <li><i></i><a href="javascript:">移动端</a></li>
+                    <li><i></i><a href="javascript:">商家管理</a></li>
+                    <li><i></i><a href="javascript:">我的订单</a></li>
+                    <li><i></i><a href="javascript:">我的收藏</a></li>
+                    <li><i></i><a href="javascript:">客户服务</a></li>
+                    <li><i></i><a href="javascript:">关注我们</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="logoSearch">
+            <div class="con">
+                <h1 class="logo">
+                    <a href="http://localhost:8998/cangbaoProject/">
+                        <img src="imgs/logo.png" alt="">
+                    </a>
+                </h1>
+                <div class="logo-tip">藏地吃,住,行,游,购,娱综合平台</div>
+                <div class="search-wrap">
+                    <ul>
+                        <li><span>商品</span><i></i></li>
+                        <li><span>店铺</span></li>
+                    </ul>
+                    <form action="" method="">
+                        <input type="text" class="search-inp">
+                        <button class="search-btn">搜索</button>
+                    </form>
+                </div>
+                <div class="shop-car">
+                    <a href="shop-car.html">
+                        <i class="car-icon"></i>
+                        <em class="cart_num">0</em>
+                        <span>购物车</span>
+                    </a>
+                    <div class="car-list"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="nav-wrap">
+            <div class="nav-con">
+                <div class="nav">
+                    <div class="nav-title"><i></i><span>全部商品分类</span></div>
+                    <ul class="nav-list">
+                        <li>
+                            <a href="javascript:">藏土特产</a>
+                            <div></div>
+                        </li>
+                        <li>
+                            <a href="javascript:">佛教用品</a>
+                            <div></div>
+                        </li>
+                        <li>
+                            <a href="javascript:">服饰/首饰</a>
+                            <div></div>
+                        </li>
+                        <li>
+                            <a href="javascript:">藏手工品</a>
+                            <div></div>
+                        </li>
+                        <li>
+                            <a href="javascript:">藏式家具</a>
+                            <div></div>
+                        </li>
+                        <li>
+                            <a href="javascript:">生活用品</a>
+                            <div></div>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+        <div class="shop clear_fix">
+            <div class="shop-img">
+                <img src="" alt="">
+            </div>
+            <div class="shop-data">
+                <span class="shop-name"></span><br/>
+                市场价：<span class="shop-market-price"></span><br/>
+                商城价：<span class="shop-price"></span><br/>
+                数量：<span class="shop-count"></span>
+                <div class="box">
+                    <div class="count">
+                        <input type="text" value="1">
+                        <span class="add"></span>
+                        <span class="reduce"></span>
+                    </div>
+                    <button class="add-to-car">加入购物车</button>
+                    <button class="buy">立即购买</button>
+                    <div class="tip-box">
+                        <p>成功添加到购物车</p>
+                        <span class="go-to-car">查看购物车</span>
+                        <span class="go-on-buy">继续购物</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/jquery.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/cookie.js"></script>
+    <script src="js/shop-details.js"></script>
+</body>
+</html>

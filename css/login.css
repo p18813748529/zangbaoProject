@@ -1,0 +1,6 @@
+
+/* .s-contain：内容 */
+.s-contain{height: 100%;}
+/* .sec-left：内容左边部分 */
+.s-contain .sec-left{float: left;width: 450px;height: 350px;margin-top: 30px;}
+.s-contain .sec-left>img{width: 100%;height: 100%;}

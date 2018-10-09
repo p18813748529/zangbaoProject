@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>藏宝网 - 用户注册</title>
+    <meta name="keywords" content="藏宝网">
+    <meta name="description" content="藏宝网">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_861103_ef715aqf8gu.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/log-reg.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+
+<body>
+    <header>
+        <div class="h-contain contain">
+            <h1 class="site-logo">
+                <a href="http://localhost:8998/cangbaoProject/">
+                    <img src="imgs/logo.png" alt="">
+                </a>
+            </h1>
+            <div class="site-regist">
+                <p>我已经注册，现在就&nbsp;&nbsp;<a href="login.html">登录</a></p>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="s-contain contain">
+            <div class="sec-logReg">
+                <div class="sec-logReg-up"></div>
+                <ul class="sec-logReg-way">
+                    <li class="show-title show-form-user">账号注册</li>
+                    <li class="hide-title show-form-phone">手机注册</li>
+                </ul>
+                <div class="logReg-form-box">
+                    <form action="" class="logReg-form-user show" autocomplete="off">
+                        <div class="user-box inp-box">
+                            <label for="username">用户名&nbsp:</label>
+                            <input type="text" id="username" tipmsg="请使用3-15个中、英文、数字及“-”符号" value="请使用3-15个中、英文、数字及“-”符号" regmsg="^[0-9a-zA-Z]{5,13}$">
+                        </div>
+                        <div class="pass-box inp-box">
+                            <label for="password">设置密码&nbsp:</label>
+                            <input type="text" id="password" tipmsg="6-20个大小写英文字母、符号或数字" value="6-20个大小写英文字母、符号或数字" autocomplete="off" regmsg="^[0-9a-zA-Z]{6,20}$">
+                        </div>
+                        <div class="pass-box inp-box re-pass">
+                            <label for="re-password">确认密码&nbsp:</label>
+                            <input type="text" id="re-password" tipmsg="请再次输入密码" value="请再次输入密码" autocomplete="off">
+                        </div>
+                        <div class="email-box inp-box">
+                            <label for="email">邮&nbsp&nbsp&nbsp箱&nbsp:</label>
+                            <input type="text" id="email" tipmsg="输入常用邮箱作为验证及找回密码使用" value="输入常用邮箱作为验证及找回密码使用">
+                        </div>
+                        <div class="check-box inp-box">
+                            <label for="checkcode">验证码&nbsp:</label>
+                            <input type="text" id="checkcode" tipmsg="输入验证码" value="输入验证码">
+                            <div class="code"></div>
+                        </div>
+                        <div class="handle-box">
+                            <div class="auto-logReg"><input type="checkBox">&nbsp;<span>阅读并同意</span></div>
+                            <a href="javascript:">《服务协议》</a>
+                        </div>
+                        <button type="button" class="logReg-btn">立即注册</button>
+                    </form>
+                    <form action="" class="logReg-form-phone">
+                        <div class="user-box inp-box focus-inp">
+                            <label for="phone">手机号&nbsp:</label>
+                            <input type="text" id="phone" tipmsg="请输入手机号码" 
+                                value="请输入手机号码">
+                        </div>
+                        <div class="check-box inp-box focus-inp">
+                            <label for="phone-checkcode">验证码&nbsp:</label>
+                            <input type="text" id="phone-checkcode" tipmsg="输入验证码" value="输入验证码">
+                            <div class="code"></div>
+                        </div>
+                        <div class="tip-phone">
+                            确保上方验证码输入正确，点击<span><i class="iconfont icon-shouji"></i><a href="javascript:">发送短信验证</a></span>，并将您手机短信所接收到的“6位动态码”输入到下方短信验证，再提交下一步。
+                        </div>
+                        <div class="user-box inp-box focus-inp">
+                            <label for="phone-code">动态码&nbsp:</label>
+                            <input type="text" id="phone-code" tipmsg="输入6位手机动态码" 
+                                value="输入6位手机动态码">
+                        </div>
+                        <button class="logReg-btn">下一步</button>
+                    </form>
+                </div>
+            </div>
+            <div class="sec-right">
+                <div class="other-login">
+                    <p>使用合作网站账号直接登录</p>
+                    <a href="javascript:"><i class="iconfont icon-moff-qq"></i></a>
+                    <a href="javascript:"><i class="iconfont icon-weixing"></i></a>
+                </div>
+                <div class="reg-after">
+                    <p>注册之后您可以</p>
+                    <ul>
+                        <li><i></i>购买商品支付订单</li>
+                        <li><i></i>收藏商品关注店铺</li>
+                        <li><i></i>安全交易诚信无忧</li>
+                        <li><i></i>积分获取优惠购物</li>
+                        <li><i></i>会员等级享受特权</li>
+                        <li><i></i>评价晒单站外分享</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="f-contain contain">
+            <div class="right-flag">
+                <a href="javascript:"><img src="imgs/credit-flag3.png" alt=""></a>
+                <a href="javascript:"><img src="imgs/isc2.png" alt=""></a>
+            </div>
+            <div class="about-us">
+                <p>返回首页<i>|</i>电信增值业务经营许可证<i>|</i>出版物经营许可证<i>|</i>网络文化经营许可证<i>|</i>公司简介<i>|</i>友情链接</p>
+                <p>CopyRight © 2016-2017 藏宝网 甘B2-20140002-1 | 甘B2-20140002-2www.zangbooo.com 版权所有
+                    客户服务中心(7×24):0941-8257726</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/jquery.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/encypt/encypt.js"></script>
+    <script src="js/login_reg.js"></script>
+    <script>
+        login_reg.init(".logReg-form-user","reg");
+        $(".show-form-user").on("click",function(){
+            $(this).addClass("show-title");
+            $(".show-form-phone").removeClass("show-title");
+            $(".logReg-form-user").addClass("show");
+            $(".logReg-form-phone").removeClass("show");
+        });
+        $(".show-form-phone").on("click",function(){
+            $(this).addClass("show-title");
+            $(".show-form-user").removeClass("show-title");
+            $(".logReg-form-user").removeClass("show");
+            $(".logReg-form-phone").addClass("show");
+        });
+    </script>
+</body>
+
+</html>
