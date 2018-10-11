@@ -9,14 +9,14 @@
     <meta name="description" content="藏宝网">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_861103_ef715aqf8gu.css">
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/log-reg.css">
+    <link rel="stylesheet" href="css/log-reg.1.css">
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <header>
         <div class="h-contain contain">
             <h1 class="site-logo">
-                <a href="http://localhost:8998/cangbaoProject/">
+                <a href="index.html">
                     <img src="imgs/logo.png" alt="">
                 </a>
             </h1>
@@ -51,11 +51,12 @@
                         </div>
                         <div class="check-box inp-box">
                             <label for="checkcode">验证码&nbsp:</label>
-                            <input type="text" id="checkcode" tipmsg="输入验证码" value="输入验证码">
-                            <div class="code"></div>
+                            <input type="text" id="checkcode" tipmsg="输入验证码" value="输入验证码" 
+                            tipmsg = "输入验证码" regmsg = "^[0-9a-zA-Z]{4}$">
+                            <canvas class="canvasCode" width="120" height="52"></canvas>
                         </div>
                         <div class="handle-box">
-                            <div class="auto-logReg"><input type="checkBox"><span>七天自动登录</span></div>
+                            <div class="auto-logReg"><input type="checkBox" id="sevenDay"><span>七天自动登录</span></div>
                             <span class="auto-logReg-tip">请勿在公用电脑上使用</span>
                             <a href="javascript:">忘记密码？</a>
                         </div>
@@ -107,6 +108,7 @@
     <script src="js/ajax.js"></script>
     <script src="js/cookie.js"></script>
     <script src="js/encypt/encypt.js"></script>
+    <script src="js/canvas_code.js"></script>
     <script src="js/login_reg.js"></script>
     <script>
         login_reg.init(".logReg-form-user","login");

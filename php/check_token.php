@@ -2,7 +2,8 @@
     header("Content-type:text/html; charset=utf-8");
     $inp = json_decode(file_get_contents("php://input"));
     $username = $inp -> {"username"};
-    $token = substr($_COOKIE["zangbaoToken"],stripos($_COOKIE["zangbaoToken"],"_")+1);
+    // $token = substr($_COOKIE["zangbaoToken"],stripos($_COOKIE["zangbaoToken"],"_")+1);
+    $token = $inp -> {"token"};
     $type = $inp -> {"type"};
     $sqlUpdate = "UPDATE user SET token='' WHERE username='$username'";
     $sqlSelect = "SELECT * FROM user WHERE username='$username' AND token='$token'";
@@ -21,7 +22,7 @@
             $res = array("code" => 200, "msg" => "", "username" => $username);
         }
     }else{
-        $res = array("code" => 1000, "msg" => "token值与用户不匹配", "username" => "");
+        $res = array("code" => 1000, "msg" => "token值不匹配", "username" => "");
     }
     echo json_encode($res);
 ?>

@@ -87,9 +87,10 @@ var shopCar = (function(){
                         break;
                     }
                 }
+                shop.imgs = shop.imgs.split(",");
                 arr.push(`<div class="shop-box">
                             <input type="checkbox" class="shop-check"/>
-                            <img src="${shop.imgs}"/>
+                            <img src="${shop.imgs[0]}"/>
                             <div>
                             商品名称:<span class="shop-name">${shop.shopName}</span><br />
                             数量: <input class="shop-count" type="number" min=1 value="${data[i].count}" /><br />

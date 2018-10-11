@@ -6,9 +6,18 @@ var login_reg = (function(){
             this.type = type;
             this.$userInp = this.$("#username",this.$ele);
             this.$passInp = this.$("#password",this.$ele);
-            this.$rePassInp = this.$("#re-password",this.$ele);
+            this.$checkcode = this.$("#checkcode",this.$ele);
+            this.$cvsCode = this.$(".canvasCode",this.$ele);
+            if(type=="reg"){
+                this.$rePassInp = this.$("#re-password",this.$ele);
+                this.$email = this.$("#email",this.$ele);
+                this.$protocol = this.$("#protocol",this.$ele);
+            }else if(type=="login"){
+                this.$sevenDay = this.$("#sevenDay",this.$ele);
+            }
             this.$subBtn = this.$(".logReg-btn",this.$ele);
             this.event();
+            this.code = this.reCode();
         },
         // 事件处理
         event:function(){
@@ -43,7 +52,7 @@ var login_reg = (function(){
                 this.parentNode.classList.remove("focus-inp");
                 if(this.value===""){
                     this.value=this.getAttribute("tipmsg");
-                    if(this.id==="password" && this.type==="password") this.type = "text";
+                    if(this.id==="password" || this.id==="re-password" && this.type==="password") this.type = "text";
                 }
                 if(this.id==="re-password"){
                     var parent = this.parentNode;
@@ -58,15 +67,28 @@ var login_reg = (function(){
                     _this.check(this);
                 }
             };
+            this.$cvsCode.onclick = function(){
+                _this.code = _this.reCode();
+            }
             this.$userInp.oninput = input;
             this.$passInp.oninput = input;
-            this.$rePassInp.oninput = input;
             this.$userInp.onfocus = focus;
             this.$passInp.onfocus = focus;
-            this.$rePassInp.onfocus = focus;
+            this.$checkcode.onfocus = focus;
             this.$userInp.onblur = blur;
             this.$passInp.onblur = blur;
-            this.$rePassInp.onblur = blur;
+            this.$checkcode.onblur = blur;
+            if(_this.type=="reg"){
+                this.$rePassInp.oninput = input;
+                this.$rePassInp.onfocus = focus;
+                this.$rePassInp.onblur = blur;
+                this.$email.oninput = input;
+                this.$email.onfocus = focus;
+                this.$email.onblur = blur;
+            }
+        },
+        reCode:function(){
+            return getCode(this.$cvsCode,120,52);
         },
         // ajax检测用户是否存在，且密码是否正确
         ajaxCheck:function(){
@@ -93,8 +115,10 @@ var login_reg = (function(){
             return function(data) {
                 // 如果验证通过，跳转到用户页
                 if(data.code==200){
-                    document.cookie = "zangbaoToken=" + data.token + ";";
-                    location.href = "http://localhost:8998/cangbaoProject/";
+                    var time = _this.$sevenDay.checked ? "_true; " 
+                        + "max-age=" + (7*24*60*60) + ";" : ";";
+                    document.cookie = "zangbaoToken=" + data.token + time;
+                    location.href = "index.html";
                 }else{
                     alert(data.msg);
                 }
@@ -106,7 +130,7 @@ var login_reg = (function(){
                 if(data.code == 200){
                     document.cookie = "zangbaoToken=" + data.token + ";";
                     alert("注册成功");
-                    location.href = "http://localhost:8998/cangbaoProject/";
+                    location.href = "index.html";
                 }else{
                     alert(data.msg);
                 }
@@ -116,8 +140,14 @@ var login_reg = (function(){
         regExpCheck:function(){
             var uCheck = this.check(this.$userInp);
             var pCheck = this.check(this.$passInp);
-            var rePCheck = this.$passInp.value === this.$rePassInp.value;
-            if(uCheck && pCheck && rePCheck){
+            var rePCheck = true;
+            var cCheck = this.check(this.$checkcode);
+            if(this.type=="reg"){
+                var rePCheck = this.$passInp.value === this.$rePassInp.value;
+                this.$rePassInp.focus();
+                this.$rePassInp.blur();
+            }
+            if(uCheck && pCheck && rePCheck && cCheck){
                 return true;
             }else{
                 return false;
@@ -135,6 +165,13 @@ var login_reg = (function(){
             }else{
                 parent.classList.add("focus-inp");
                 parent.classList.remove("focus-inp-error");
+            }
+            if(inp.id === "checkcode"){
+                if(!(inp.value.toUpperCase()===this.code)){
+                    parent.classList.remove("focus-inp");
+                    parent.classList.add("focus-inp-error");
+                    flag = false;
+                }
             }
             return flag;
         },

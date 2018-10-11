@@ -10,7 +10,7 @@
     <meta name="description" content="藏宝网">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_861103_ef715aqf8gu.css">
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/log-reg.css">
+    <link rel="stylesheet" href="css/log-reg.1.css">
     <link rel="stylesheet" href="css/register.css">
 </head>
 
@@ -18,7 +18,7 @@
     <header>
         <div class="h-contain contain">
             <h1 class="site-logo">
-                <a href="http://localhost:8998/cangbaoProject/">
+                <a href="index.html">
                     <img src="imgs/logo.png" alt="">
                 </a>
             </h1>
@@ -51,15 +51,15 @@
                         </div>
                         <div class="email-box inp-box">
                             <label for="email">邮&nbsp&nbsp&nbsp箱&nbsp:</label>
-                            <input type="text" id="email" tipmsg="输入常用邮箱作为验证及找回密码使用" value="输入常用邮箱作为验证及找回密码使用">
+                            <input type="text" id="email" tipmsg="输入常用邮箱作为验证及找回密码使用" value="输入常用邮箱作为验证及找回密码使用" regmsg="^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$">
                         </div>
                         <div class="check-box inp-box">
                             <label for="checkcode">验证码&nbsp:</label>
                             <input type="text" id="checkcode" tipmsg="输入验证码" value="输入验证码">
-                            <div class="code"></div>
+                            <canvas class="canvasCode" width="120" height="52"></canvas>
                         </div>
                         <div class="handle-box">
-                            <div class="auto-logReg"><input type="checkBox">&nbsp;<span>阅读并同意</span></div>
+                            <div class="auto-logReg"><input type="checkBox" id="protocol">&nbsp;<span>阅读并同意</span></div>
                             <a href="javascript:">《服务协议》</a>
                         </div>
                         <button type="button" class="logReg-btn">立即注册</button>
@@ -123,6 +123,7 @@
     <script src="js/jquery.js"></script>
     <script src="js/ajax.js"></script>
     <script src="js/encypt/encypt.js"></script>
+    <script src="js/canvas_code.js"></script>
     <script src="js/login_reg.js"></script>
     <script>
         login_reg.init(".logReg-form-user","reg");

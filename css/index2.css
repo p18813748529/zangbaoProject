@@ -447,7 +447,7 @@ section .nav-con .nav {
   color: #fff;
   position: relative;
 }
-section .nav-con .nav:hover .nav-list {
+section .nav-con .nav .nav-list {
   display: block;
 }
 section .nav-con .nav-title {
@@ -796,9 +796,6 @@ section .contain .con .list {
   height: 495px;
   background: #fff;
 }
-section .contain .con .list:hover li {
-  opacity: 0.3;
-}
 section .contain .con .list li {
   float: left;
   width: 200px;
@@ -843,6 +840,9 @@ section .contain .con .list li.no-b {
 }
 section .contain .con .list li:hover {
   opacity: 1;
+}
+section .contain .con .list:hover li {
+  opacity: 0.3;
 }
 section .contain .shop-foot {
   width: 100%;

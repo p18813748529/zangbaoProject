@@ -1,67 +1,92 @@
-
-body{background: #eee;}
-.main{width: 1200px;margin: 50px auto;background: #fff;padding: 20px;border: 1px solid #ddd;
-    border-radius: 20px;}
-.main .shop-box{width: 900px;height: 100px;;margin: 0 auto 20px;background: #fcfcfc;padding: 20px;
-    border: 1px solid #ddd;}
-.main .shop-box img{width: 90px;height: 90px;border: 1px solid #ddd;float: left;margin-right: 10px;}
-.main .shop-box div{float: left;}
-.main .shop-box .shop-name{font-size: 14px;font-weight: bold;color: #333;}
-.main .shop-box .shop-count{
-    color: #333;
-    font-family: Tahoma;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 30px;
-    text-align: center;
-    height: 30px;
-    width: 41px;
-    padding: 0;
-    border: solid 1px #eee;
-    background-color: #FFF;
-    display: inline-block;
+body {
+  background: #eee;
 }
-.main .shop-box .shop-check{
-    width: 15px;
-    height: 15px;
-    float: left;
-    margin-right: 10px;
-    cursor: pointer;
-    outline: none;
+.main {
+  width: 1200px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
 }
-.total{
-    width: 942px;
-    height: 50px;
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #ddd;
-    line-height: 50px;
-    color: #333;
-    font-size: 12px;
+.main .shop-box {
+  width: 900px;
+  height: 100px;
+  margin: 0 auto 20px;
+  background: #fcfcfc;
+  padding: 20px;
+  border: 1px solid #ddd;
 }
-.total .select-all{
-    margin: 0 5px;
+.main .shop-box img {
+  width: 90px;
+  height: 90px;
+  border: 1px solid #ddd;
+  float: left;
+  margin-right: 10px;
 }
-.total .total-price{
-    margin-left: 600px;
+.main .shop-box div {
+  float: left;
 }
-.total .total-price em{
-    color: #ff4400;
-    font-size: 16px;
+.main .shop-box .shop-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
 }
-.total .total-btn{
-    display: block;
-    width: 120px;
-    height: 50px;
-    border-radius: 2px;
-    font-size: 20px;
-    color: #fff;
-    text-align: center;
-    background: #b0b0b0;
-    float: right;
+.main .shop-box .shop-count {
+  color: #333;
+  font-family: Tahoma;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: center;
+  height: 30px;
+  width: 41px;
+  padding: 0;
+  border: solid 1px #eee;
+  background-color: #FFF;
+  display: inline-block;
 }
-.total .total-btn:hover{
-    background: #ff4400;
+.main .shop-box .shop-check {
+  width: 15px;
+  height: 15px;
+  float: left;
+  margin-right: 10px;
+  cursor: pointer;
+  outline: none;
+}
+.total {
+  width: 942px;
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ddd;
+  line-height: 50px;
+  color: #333;
+  font-size: 12px;
+}
+.total .select-all {
+  margin: 0 5px;
+}
+.total .total-price {
+  margin-left: 600px;
+}
+.total .total-price em {
+  color: #ff4400;
+  font-size: 16px;
+}
+.total .total-btn {
+  display: block;
+  width: 120px;
+  height: 50px;
+  border-radius: 2px;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  background: #b0b0b0;
+  float: right;
+}
+.total .total-btn:hover {
+  background: #ff4400;
 }

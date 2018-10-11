@@ -37,10 +37,13 @@ if(token){
     };
     sendAjax("php/check_token.php",options);
     $("#sign-out").on("click",function(){
-        cookie.removeCookie("zangbaoToken");
         $("header .top .top-left").removeClass("logined");
         $("header .top .top-left p em").text("");
-        options.data.type = true;
-        sendAjax("php/check_token.php",options);
+        // if(!arr[2]==="true"){
+            cookie.removeCookie("zangbaoToken");
+            options.data.type = true;
+            sendAjax("php/check_token.php",options);
+        // }
+        
     });
 }

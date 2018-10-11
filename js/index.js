@@ -7,7 +7,9 @@ var swiper = new Swiper('.swiper-container', {
     effect: 'fade',
     autoplay: 3000
 });
-$(".shop-car em").text(JSON.parse(localStorage.shopList).length);
+if(localStorage.shopList){
+    $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
+}
 var shops = $(".shop a");
 shops.on("click",function(){
     var shopId = $(this).parent(".shop").attr("data-shop-id");

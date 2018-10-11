@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>商品详情页</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.0/css/swiper.min.css"> -->
     <link rel="stylesheet" href="//at.alicdn.com/t/font_861103_ef715aqf8gu.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/index.css">
@@ -37,7 +39,7 @@
         <div class="logoSearch">
             <div class="con">
                 <h1 class="logo">
-                    <a href="http://localhost:8998/cangbaoProject/">
+                    <a href="index.html">
                         <img src="imgs/logo.png" alt="">
                     </a>
                 </h1>
@@ -95,17 +97,30 @@
                         </li>
                     </ul>
                 </div>
-                
+
             </div>
         </div>
         <div class="shop clear_fix">
             <div class="shop-img">
-                <img src="" alt="">
+                <!-- <div class="gallery-top"> -->
+                    <div class="big-img">
+                        <!-- <div class="swiper-slide" style="background-image:url(imgs/shop-list-img1.jpg)"></div> -->
+                        <div class="min-box"></div>
+                        <div class="big-box"></div>
+                    </div>
+                <!-- </div> -->
+                <div class="img-list-wrap">
+                    <ul class="img-list img-contain">
+                        <!-- <div class="swiper-wrapper "> -->
+                            <!-- <div class="swiper-slide" style="background-image:url(imgs/shop-list-img1.jpg)"></div> -->
+                        <!-- </div> -->
+                    </ul>
+                </div>
             </div>
             <div class="shop-data">
-                <span class="shop-name"></span><br/>
-                市场价：<span class="shop-market-price"></span><br/>
-                商城价：<span class="shop-price"></span><br/>
+                <span class="shop-name"></span><br />
+                市场价：<span class="shop-market-price"></span><br />
+                商城价：<span class="shop-price"></span><br />
                 数量：<span class="shop-count"></span>
                 <div class="box">
                     <div class="count">
@@ -124,9 +139,11 @@
             </div>
         </div>
     </section>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.0/js/swiper.min.js"></script> -->
     <script src="js/jquery.js"></script>
     <script src="js/ajax.js"></script>
     <script src="js/cookie.js"></script>
     <script src="js/shop-details.js"></script>
 </body>
+
 </html>
