@@ -1,367 +1,308 @@
 /* header,section,footer{overflow: hidden;} */
 header {
-    height: 80px;
-    background-color: #fff;
+  height: 80px;
+  background-color: #fff;
 }
-
 section {
-    height: 470px;
-    margin: 60px 0;
+  height: 470px;
+  margin: 60px 0;
 }
-
 footer {
-    height: 90px;
-    background-color: #fff;
-    border-top: 1px solid #eee;
-    padding-top: 10px;
+  height: 90px;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
 }
-
 .contain {
-    margin: 0 auto;
+  margin: 0 auto;
 }
-
 .h-contain,
 .s-contain {
-    width: 1000px;
+  width: 1000px;
 }
-
 .f-contain {
-    width: 1200px;
+  width: 1200px;
 }
-
 body {
-    background-color: #fafafa
+  background-color: #fafafa;
 }
-
 .site-regist {
-    float: right;
-    width: 310px;
-    height: 40px;
-    font-size: 14px;
-    color: #aaa;
-    line-height: 20px;
-    padding-top: 30px;
+  float: right;
+  width: 310px;
+  height: 40px;
+  font-size: 14px;
+  color: #aaa;
+  line-height: 20px;
+  padding-top: 30px;
 }
-
-.site-regist>img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    float: left;
-    margin-right: 8px;
+.site-regist img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  float: left;
+  margin-right: 8px;
 }
-
 .site-regist a {
-    color: #0066cc;
-    font-weight: bold;
-    transition: 0.3s;
+  color: #0066cc;
+  font-weight: bold;
+  transition: 0.3s;
 }
-
 .site-regist a:hover {
-    color: #F32613;
+  color: #F32613;
 }
-
 /* .h-contain：头部 */
 .h-contain {
-    height: 100%;
-    background-color: #fff;
-    border-bottom: 1px solid #f5f5f5;
+  height: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #f5f5f5;
 }
-
 .site-logo {
-    float: left;
-    ;
-    width: 212px;
-    height: 130px;
-    margin-top: 10px;
-    border-radius: 50px;
-    background-color: #fff;
+  float: left;
+  width: 212px;
+  height: 130px;
+  margin-top: 10px;
+  border-radius: 50px;
+  background-color: #fff;
 }
-
-.site-logo>a>img {
-    width: 212px;
-    height: 57.8px;
+.site-logo a > img {
+  width: 212px;
+  height: 57.8px;
 }
-
 .s-contain .sec-logReg {
-    float: right;
-    width: 478px;
-    border: 1px solid #e6e6e6;
-    border-radius: 4px;
-    position: relative;
-    background-color: #fff;
-    padding-bottom: 29px;
+  float: right;
+  width: 478px;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  position: relative;
+  background-color: #fff;
+  padding-bottom: 29px;
 }
-
 .s-contain .sec-logReg .sec-logReg-up {
-    background: url(../imgs/login_pic.png) no-repeat -280px 0;
-    width: 17px;
-    height: 9px;
-    position: absolute;
-    z-index: 1;
-    top: -9px;
-    left: 160px;
+  background: url(../imgs/login_pic.png) no-repeat -280px 0;
+  width: 17px;
+  height: 9px;
+  position: absolute;
+  z-index: 1;
+  top: -9px;
+  left: 160px;
 }
-
-/* .sec-logReg-way：登录方式选择 */
 .s-contain .sec-logReg .sec-logReg-way {
-    width: 440px;
-    height: 18px;
-    margin: 23px auto 0;
-    padding-bottom: 18px;
-    border-bottom: 1px solid #e6e6e6;
-    color: #999;
+  width: 440px;
+  height: 18px;
+  margin: 23px auto 0;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e6e6e6;
+  color: #999;
 }
-
 .s-contain .sec-logReg .sec-logReg-way li {
-    float: left;
-    width: 50%;
-    text-align: center;
-    font-size: 18px;
-    line-height: 18px;
-    padding-bottom: 16px;
-    cursor: pointer;
+  float: left;
+  width: 50%;
+  text-align: center;
+  font-size: 18px;
+  line-height: 18px;
+  padding-bottom: 16px;
+  cursor: pointer;
 }
-
-.s-contain .sec-logReg-way .show-title {
-    color: #f32613;
-    border-bottom: 3px solid #f32613;
-    position: relative;
+.s-contain .sec-logReg .sec-logReg-way .show-title {
+  color: #f32613;
+  border-bottom: 3px solid #f32613;
+  position: relative;
 }
-
-.s-contain .show-title::before {
-    content: "";
-    border: 7px solid transparent;
-    border-top: 7px solid #f32613;
-    position: absolute;
-    left: 50%;
-    bottom: -16px;
-    transform: translateX(-50%);
+.s-contain .sec-logReg .sec-logReg-way .show-title::before {
+  content: "";
+  border: 7px solid transparent;
+  border-top: 7px solid #f32613;
+  position: absolute;
+  left: 50%;
+  bottom: -16px;
+  transform: translateX(-50%);
 }
-
-.s-contain .sec-logReg-way .hide-title:hover {
-    color: #333;
+.s-contain .sec-logReg .sec-logReg-way .hide-title:hover {
+  color: #333;
 }
-
-/* .logReg-form:登录表单 */
 .s-contain .sec-logReg .logReg-form-box {
-    width: 350px;
-    margin: 30px auto 26px;
+  user-select: none;
+  width: 350px;
+  margin: 30px auto 26px;
 }
-
-.s-contain .sec-logReg .logReg-form-user {
-    width: 100%;
-    height: 268px;
-    display: none;
-}
-
-.s-contain .sec-logReg .logReg-form-phone {
-    width: 100%;
-    display: none;
-}
-
 .s-contain .sec-logReg .logReg-form-box .show {
-    display: block;
+  display: block;
 }
-
-.s-contain .logReg-form-box .inp-box {
-    padding-left: 20px;
-    line-height: 50px;
-    border: 1px solid #e6e6e6;
+.s-contain .sec-logReg .logReg-form-box .inp-box {
+  padding-left: 20px;
+  line-height: 50px;
+  border: 1px solid #e6e6e6;
 }
-
-/* .s-contain .logReg-form-box .user-box{position: relative;top: 1px;} */
-.s-contain .logReg-form-box .inp-box label {
-    font-size: 14px;
-    color: #666;
+.s-contain .sec-logReg .logReg-form-box .inp-box label {
+  font-size: 14px;
+  color: #666;
 }
-
-.s-contain .logReg-form-box .inp-box input {
-    font-size: 14px;
-    color: #bbb;
-    margin-left: 15px;
-    width: 230px;
-    padding-left: 10px;
+.s-contain .sec-logReg .logReg-form-box .inp-box input {
+  font-size: 14px;
+  color: #bbb;
+  margin-left: 15px;
+  width: 230px;
+  height: 40px;
+  padding-left: 10px;
 }
-
-.s-contain .logReg-form-box .check-box {
-    width: 208px;
-    margin-top: 14px;
-    position: relative;
+.s-contain .sec-logReg .logReg-form-box .check-box {
+  width: 208px;
+  margin-top: 14px;
+  position: relative;
 }
-
-.s-contain .logReg-form-box .check-box input {
-    width: 100px;
+.s-contain .sec-logReg .logReg-form-box .check-box input {
+  width: 100px;
 }
-
-.s-contain .logReg-form-box .check-box .canvasCode {
-    cursor: pointer;
-    border-left: 1px solid #e6e6e6;
-    float: right;
-    position: absolute;
-    right: -122px;
-    top: -1px;
-    border: 1px solid #e6e6e6;
-    border-left: none;
+.s-contain .sec-logReg .logReg-form-box .check-box .canvasCode {
+  cursor: pointer;
+  border-left: 1px solid #e6e6e6;
+  float: right;
+  position: absolute;
+  right: -122px;
+  top: -1px;
+  border: 1px solid #e6e6e6;
+  border-left: none;
 }
-
-.s-contain .logReg-form-box .logReg-form-user .focus-inp {
-    border-color: #4ea335;
+.s-contain .sec-logReg .logReg-form-box .handle-box {
+  font-size: 12px;
+  padding: 21px 0 0;
+  line-height: 12px;
 }
-
-.s-contain .logReg-form-box .logReg-form-user .focus-inp-error {
-    border-color: #d91e17;
+.s-contain .sec-logReg .logReg-form-box .handle-box .auto-logReg {
+  float: left;
+  color: #999;
+  margin-right: 5px;
 }
-
-.s-contain .logReg-form-box .handle-box {
-    font-size: 12px;
-    padding: 21px 0 0;
-    line-height: 12px;
+.s-contain .sec-logReg .logReg-form-box .handle-box .auto-logReg input {
+  float: left;
 }
-
-.s-contain .logReg-form-box .handle-box .auto-logReg {
-    float: left;
-    color: #999;
-    margin-right: 5px;
+.s-contain .sec-logReg .logReg-form-box .handle-box a {
+  float: right;
 }
-
-.s-contain .logReg-form-box .auto-logReg input {
-    float: left;
+.s-contain .sec-logReg .logReg-form-box .auto-logReg-tip {
+  color: #ff3238;
 }
-
-.s-contain .logReg-form-box .auto-logReg-tip {
-    color: #ff3238;
+.s-contain .sec-logReg .logReg-form-box .logReg-btn {
+  width: 346px;
+  height: 40px;
+  background-color: #f32613;
+  border: 1px solid #d91e17;
+  border-radius: 2px;
+  font-size: 14px;
+  color: #fff;
+  margin-top: 18px;
+  cursor: pointer;
 }
-
-.s-contain .logReg-form-box .handle-box a {
-    float: right;
+.s-contain .sec-logReg .logReg-form-box .tip-phone {
+  font-size: 12px;
+  color: #999;
+  padding: 15px 0;
+  line-height: 20px;
 }
-
-.s-contain .logReg-form-box .logReg-btn {
-    width: 346px;
-    height: 40px;
-    background-color: #f32613;
-    border: 1px solid #d91e17;
-    border-radius: 2px;
-    font-size: 14px;
-    color: #fff;
-    margin-top: 18px;
-    cursor: pointer;
+.s-contain .sec-logReg .logReg-form-box .tip-phone span {
+  position: relative;
 }
-
-.s-contain .logReg-form-box .tip-phone {
-    font-size: 12px;
-    color: #999;
-    padding: 15px 0;
-    line-height: 20px;
+.s-contain .sec-logReg .logReg-form-box .tip-phone span i {
+  position: absolute;
+  color: #fff;
+  left: 2px;
+  top: 1px;
 }
-
-.s-contain .logReg-form-box .tip-phone span {
-    position: relative;
+.s-contain .sec-logReg .logReg-form-box .tip-phone span a {
+  line-height: 22px;
+  color: #FFF;
+  background-color: #21b384;
+  vertical-align: middle;
+  display: inline-block;
+  height: 22px;
+  padding: 0 8px 0 15px;
+  margin: 0 4px;
+  border-radius: 2px;
 }
-
-.s-contain .logReg-form-box .tip-phone span i {
-    position: absolute;
-    color: #fff;
-    left: 2px;
-    top: 1px;
+.s-contain .sec-logReg .logReg-form-user {
+  width: 100%;
+  height: 268px;
+  display: none;
 }
-
-.s-contain .logReg-form-box .tip-phone span a {
-    line-height: 22px;
-    color: #FFF;
-    background-color: #21b384;
-    vertical-align: middle;
-    display: inline-block;
-    height: 22px;
-    padding: 0 8px 0 15px;
-    margin: 0 4px;
-    border-radius: 2px;
+.s-contain .sec-logReg .logReg-form-user .focus-inp {
+  border-color: #4ea335;
 }
-
+.s-contain .sec-logReg .logReg-form-user .focus-inp-error {
+  border-color: #d91e17;
+}
+.s-contain .sec-logReg .logReg-form-phone {
+  width: 100%;
+  display: none;
+}
 .s-contain .sec-logReg .other-way {
-    width: 350px;
-    margin: 0 auto;
-    font-size: 12px;
-    color: #333;
-    line-height: 12px;
+  width: 350px;
+  margin: 0 auto;
+  font-size: 12px;
+  color: #333;
+  line-height: 12px;
 }
-
 .s-contain .sec-logReg .other-way a {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1px solid #d6d6d6;
-    line-height: 32px;
-    text-align: center;
-    position: relative;
-    color: #bebebe;
-    margin: 14px 49px 0 0;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #d6d6d6;
+  line-height: 32px;
+  text-align: center;
+  position: relative;
+  color: #bebebe;
+  margin: 14px 49px 0 0;
 }
-
-.s-contain .sec-logReg .other-way p {
-    font-weight: bold;
-    color: #333;
-}
-
 .s-contain .sec-logReg .other-way a i {
-    font-size: 18px;
+  font-size: 18px;
 }
-
-.s-contain .sec-logReg .other-way a:nth-of-type(1):hover {
-    border-color: #3EB6E8;
-    color: #3EB6E8;
+.s-contain .sec-logReg .other-way a:nth-of-type(1) :hover {
+  border-color: #3EB6E8;
+  color: #3EB6E8;
 }
-
-.s-contain .sec-logReg .other-way a:nth-of-type(1):hover>i {
-    color: #3EB6E8;
+.s-contain .sec-logReg .other-way a:nth-of-type(1) :hover i {
+  color: #3EB6E8;
 }
-
-.s-contain .sec-logReg .other-way a:nth-of-type(2):hover {
-    border-color: #4ea335;
-    color: #4ea335;
+.s-contain .sec-logReg .other-way a:nth-of-type(2) :hover {
+  border-color: #4ea335;
+  color: #4ea335;
 }
-
-.s-contain .sec-logReg .other-way a:nth-of-type(2):hover>i {
-    color: #4ea335;
+.s-contain .sec-logReg .other-way a:nth-of-type(2) :hover i {
+  color: #4ea335;
 }
-
 .s-contain .sec-logReg .other-way a span {
-    position: absolute;
-    left: 38px;
-    font-size: 12px;
-    white-space: nowrap;
+  position: absolute;
+  left: 38px;
+  font-size: 12px;
+  white-space: nowrap;
 }
-
+.s-contain .sec-logReg .other-way p {
+  font-weight: bold;
+  color: #333;
+}
 /* .f-contain */
 .f-contain {
-    height: 100%;
-    width: 1200px;
-    border-top: 1px solid #eee;
-    padding-top: 15px;
+  height: 100%;
+  width: 1200px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
 }
-
 .f-contain .right-flag {
-    float: left;
+  float: left;
 }
-
 .f-contain .right-flag a {
-    float: left;
-    margin-right: 5px;
+  float: left;
+  margin-right: 5px;
 }
-
 .f-contain .about-us {
-    float: left;
-    font-size: 12px;
-    color: #666;
-    margin-left: 5px;
+  float: left;
+  font-size: 12px;
+  color: #666;
+  margin-left: 5px;
 }
-
 .f-contain .about-us p {
-    line-height: 21px;
+  line-height: 21px;
 }
-
 .f-contain .about-us p i {
-    margin: 0 15px 0 10px;
+  margin: 0 15px 0 10px;
 }

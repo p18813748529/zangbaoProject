@@ -1,5 +1,5 @@
 body {
-  background: #eee;
+  background: #fff;
 }
 .shop {
   width: 800px;
@@ -8,6 +8,7 @@ body {
   border-radius: 20px;
   padding: 10px;
   background-color: #fff;
+  user-select: none;
 }
 .shop .shop-img {
   float: left;
@@ -21,7 +22,7 @@ body {
   margin-bottom: 10px;
   position: relative;
   background-size: cover;
-  border: 1px solid #333;
+  border: 1px solid #666;
 }
 .shop .shop-img .big-img .big-box {
   width: 0;
@@ -30,7 +31,6 @@ body {
   z-index: 2;
   left: 50%;
   top: 50%;
-  background-size: 900px 900px;
   background-repeat: no-repeat;
 }
 .shop .shop-img .big-img .min-box {
@@ -44,9 +44,10 @@ body {
   cursor: crosshair;
 }
 .shop .shop-img .img-list-wrap {
-  overflow: auto;
+  overflow: hidden;
   height: 60px;
   position: relative;
+  border: 1px solid #666;
 }
 .shop .shop-img .img-list-wrap .img-list {
   position: absolute;
@@ -55,7 +56,7 @@ body {
 .shop .shop-img .img-list-wrap .img-list li {
   width: 58px;
   height: 58px;
-  border: 1px solid #eee;
+  border: 1px solid #aaa;
   float: left;
   margin-right: 5px;
   background-size: cover;

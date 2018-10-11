@@ -1,53 +1,76 @@
-var swiper = new Swiper('.swiper-container', {
-    pagination: '.swiper-pagination',
-    paginationClickable: '.swiper-pagination',
-    nextButton: '.swiper-button-next',
-    prevButton: '.swiper-button-prev',
-    spaceBetween: 100,
-    effect: 'fade',
-    autoplay: 3000
-});
-if(localStorage.shopList){
-    $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
-}
-var shops = $(".shop a");
-shops.on("click",function(){
-    var shopId = $(this).parent(".shop").attr("data-shop-id");
-    location.assign("shop-details.html?id=" + shopId);
-});
-var fixedTar = $(".fixed-target");
-var tarList = $(".target-list li");
-var tarTitle = $(".target-title");
-var tarPos = [];
-for(var i = 0; i < tarTitle.length; i++){
-    tarPos.push(tarTitle[i].offsetTop-60);
-}
-window.onscroll=function(){
-    var top = document.documentElement.scrollTop;
-    if(top>=tarPos[0]-300){
-        if(fixedTar.css("display") == "none"){
-            fixedTar.css("display","block");
-        }
-        for(var i = 0; i < tarPos.length; i++){
-            if(top<tarPos[i]+300&&top>tarPos[i]-300){
-                $(tarList[i]).addClass("show");
-            }else{
-                $(tarList[i]).removeClass("show");
+
+var index = (function(){
+    return {
+        init:function(){
+            this.$shops = $(".shop a");
+            this.$fixedTar = $(".fixed-target");
+            this.$tarList = $(".target-list li");
+            this.$tarTitle = $(".target-title");
+            this.$toTop = $(".fixed-right .toTop");
+            this.$toCar = $(".fixed-right .car");
+            this.tarPos = [];
+            for(var i = 0; i < this.$tarTitle.length; i++){
+                this.tarPos.push(this.$tarTitle[i].offsetTop-60);
             }
-        }
-    }else{
-        if(fixedTar.css("display") == "block"){
-            fixedTar.css("display","none");
+            this.swiper = this.startSwiper();
+            this.loadHtml();
+            this.event();
+        },
+        event:function(){
+            var _this = this;
+            this.$shops.on("click",function(){
+                var shopId = $(this).parent(".shop").attr("data-shop-id");
+                window.open("shop-details.html?id=" + shopId);
+            });
+            window.onscroll=function(){
+                var top = document.documentElement.scrollTop;
+                if(top>=_this.tarPos[0]-300){
+                    if(_this.$fixedTar.css("display") == "none"){
+                        _this.$fixedTar.css("display","block");
+                    }
+                    for(var i = 0; i < _this.tarPos.length; i++){
+                        if(top<_this.tarPos[i]+300&&top>_this.tarPos[i]-300){
+                            $(_this.$tarList[i]).addClass("show");
+                        }else{
+                            $(_this.$tarList[i]).removeClass("show");
+                        }
+                    }
+                }else{
+                    if(_this.$fixedTar.css("display") == "block"){
+                        _this.$fixedTar.css("display","none");
+                    }
+                }
+            }
+            this.$tarList.on("click",function(){
+                var index = _this.$tarList.index($(_this));
+                $(document.documentElement).animate({scrollTop:tarPos[index]},500);
+            });
+            this.$toTop.on("click",function(){
+                $(document.documentElement).animate({scrollTop:0},500);
+            });
+            this.$toCar.on("click",function(){
+                location.assign("shop-car.html");
+            });
+        },
+        loadHtml:function(){
+            $(".h-contain").load("common.html .h-contain",function(){
+                if(localStorage.shopList){
+                    $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
+                }
+            });
+            $(".footer").load("common.html .f-contain");
+        },
+        startSwiper:function(){
+            return new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationClickable: '.swiper-pagination',
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                spaceBetween: 100,
+                effect: 'fade',
+                autoplay: 3000
+            });
         }
     }
-}
-tarList.on("click",function(){
-    var index = tarList.index($(this));
-    $(document.documentElement).animate({scrollTop:tarPos[index]},500);
-});
-$(".fixed-right .toTop").on("click",function(){
-    $(document.documentElement).animate({scrollTop:0},500);
-});
-$(".fixed-right .car").on("click",function(){
-    location.assign("shop-car.html");
-});
+}());
+index.init();

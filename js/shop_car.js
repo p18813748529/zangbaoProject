@@ -2,6 +2,7 @@ var shopCar = (function(){
     return {
         init: function(ele) {
             this.$ele = document.querySelector(ele);
+            this.loadHtml();
             this.event();
             this.getShopList();
         },
@@ -39,6 +40,14 @@ var shopCar = (function(){
                     $(".total .total-price em").text(0);
                 }
             });
+        },
+        loadHtml:function(){
+            $("header").load("common.html .h-contain",function(){
+                if(localStorage.shopList){
+                    $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
+                }
+            });
+            $("footer").load("common.html .f-contain");
         },
         total:function(){
             var checkShop = $(this.$ele).find(".shop-box").has("input:checkbox:checked");
