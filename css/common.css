@@ -377,15 +377,7 @@ section .nav-wrap .nav-con .nav-list li a {
   color: #fff;
 }
 section .nav-wrap .nav-con .nav-list li .list-con {
-  width: 755px;
-  height: 356px;
-  border: 1px solid #010f5a;
   display: none;
-  border-top-width: 2px;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background: rgba(255, 255, 255, 0.8);
 }
 section .nav-wrap .nav-con .nav-list li:nth-child(2) i {
   background-position: -46px -46px;
@@ -409,6 +401,16 @@ section .nav-wrap .nav-con .nav-list li:hover {
 section .nav-wrap .nav-con .nav-list li:hover div {
   display: block;
 }
+section .nav-wrap .nav-con .nav-list .list-con {
+  width: 755px;
+  height: 356px;
+  border: 1px solid #010f5a;
+  border-top-width: 2px;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: rgba(255, 255, 255, 0.8);
+}
 section .nav-wrap .nav-con .nav-list .list-con .popular {
   padding: 10px 0 0 20px;
 }
@@ -425,14 +427,21 @@ section .nav-wrap .nav-con .nav-list .list-con .popular a:hover {
 }
 section .nav-wrap .nav-con .nav-list .list-con .kind {
   font-size: 12px;
+  margin: 18px 0 18px 25px;
 }
 section .nav-wrap .nav-con .nav-list .list-con .kind dt {
   float: left;
+  margin-right: 15px;
 }
 section .nav-wrap .nav-con .nav-list .list-con .kind dt a {
-  color: #555;
+  display: inline-block;
+  padding: 0 15px;
+  color: #333;
+  font-weight: bold;
 }
 section .nav-wrap .nav-con .nav-list .list-con .kind dd a {
+  display: inline-block;
+  padding: 0 10px;
   color: #7c7171;
 }
 footer {

@@ -1,56 +1,47 @@
+
 var shopCar = (function(){
     return {
         init: function(ele) {
-            this.$ele = document.querySelector(ele);
-            this.loadHtml();
+            this.$ele = $(ele);
+            this.$main = this.$ele.find(".main");
+            this.$total = this.$ele.find(".total");
+            loadHtml();
             this.event();
-            this.getShopList();
+            this.getData();
         },
         event: function() {
             var _this = this;
-            this.$ele.oninput = function(e) {
-                if(e.target.className == 'shop-count') {
-                    // 获取商品总价
-                    var _parent =  e.target.parentNode
-                    _parent.querySelector('.shop-total').innerHTML = e.target.value * _parent.querySelector('.shop-price').innerHTML;
-
-                }
-            }
-            $(this.$ele).on("click",".shop-check",function(){
+            this.$main.on("input",".shop-count",function(e) {
+                // 获取商品总价
+                $(this).siblings(".shop-total").text(this.value * $(this).siblings('.shop-price').text());
+            });
+            this.$main.on("click",".shop-check",function(){
                 _this.total();
             });
-            $(this.$ele).on("click",".shop-btn-del",function(){
+            this.$main.on("click",".shop-btn-del",function(){
                 var shopId = this.getAttribute("attr-id");
-                for(var j = 0; j < _this.carShopList.length; j++) {
-                    if(_this.carShopList[j].id == shopId) {
+                for(var j = 0; j < _this.shopList.length; j++) {
+                    if(_this.shopList[j].id == shopId) {
                         // 获取商品信息
-                        _this.carShopList.splice(j,1);
+                        _this.shopList.splice(j,1);
                         break;
                     }
                 }
-                localStorage.setItem("shopList",JSON.stringify(_this.carShopList));
+                localStorage.setItem("shopList",JSON.stringify(_this.shopList));
                 this.parentNode.parentNode.remove();
             });
-            $(".total .select-all").on("click",function(){
+            this.$total.find(".select-all").on("click",function(){
                 if($(this).prop("checked")){
-                    $(".main").find(".shop-box .shop-check").prop("checked",true);
+                    _this.$main.find(".shop-box .shop-check").prop("checked",true);
                     _this.total();
                 }else{
-                    $(".main").find(".shop-box .shop-check").prop("checked",false);
-                    $(".total .total-price em").text(0);
+                    _this.$main.find(".shop-box .shop-check").prop("checked",false);
+                    _this.$total.find(".total-price em").text(0);
                 }
             });
-        },
-        loadHtml:function(){
-            $("header").load("common.html .h-contain",function(){
-                if(localStorage.shopList){
-                    $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
-                }
-            });
-            $("footer").load("common.html .f-contain");
         },
         total:function(){
-            var checkShop = $(this.$ele).find(".shop-box").has("input:checkbox:checked");
+            var checkShop = this.$main.find(".shop-box").has("input:checkbox:checked");
             var shopList = JSON.parse(localStorage.shopList);
             var totalPrice = 0;
             for(var i = 0; i < checkShop.length; i++){
@@ -61,25 +52,27 @@ var shopCar = (function(){
                     }
                 }
             }
-            $(".total .total-price em").text(totalPrice+"元");
+            this.$total.find(".total-price em").text(totalPrice+"元");
         },
-        // 获取商品数据
-        getShopList: function() {
+        // 获取购物车数据,并通过id获取数据库的商品数据
+        getData: function() {
+            this.shopList = JSON.parse(localStorage.shopList || '[]');
+            if(this.shopList.length == 0) return;
             var _this = this;
             var params = {
-                // url: 'php/getShop2.php',
+                data:{
+                    shopId:[]
+                },
                 success: function (data){
                     // 把商品数据放到实例的属性上
-                   _this.shopList = JSON.parse(data.data);
-                   _this.getData();
+                    _this.insertData(JSON.parse(data.data));
                 }
             }
-            sendAjax("php/getShop2.php",params);
-        },
-        // 获取购物车数据
-        getData: function() {
-            this.carShopList = JSON.parse(localStorage.shopList || '[]');
-            this.insertData(this.carShopList);
+            for(var shop of this.shopList){
+                params.data.shopId.push(shop.id);
+            }
+            params.data.shopId = `[${params.data.shopId}]`;
+            sendAjax("php/getShop.php",params);
         },
         // 把购物车数据添加到页面中
         insertData: function(data) {
@@ -89,10 +82,12 @@ var shopCar = (function(){
             for(var i = 0; i < data.length; i++) {
                 // 通过id获取商品信息
                 var shop;
+                var count;
                 for(var j = 0; j < this.shopList.length; j++) {
                     if(this.shopList[j].id == data[i].id) {
                         // 获取商品信息
-                        shop = this.shopList[j];
+                        shop = data[i];
+                        count = this.shopList[j].count;
                         break;
                     }
                 }
@@ -102,15 +97,15 @@ var shopCar = (function(){
                             <img src="${shop.imgs[0]}"/>
                             <div>
                             商品名称:<span class="shop-name">${shop.shopName}</span><br />
-                            数量: <input class="shop-count" type="number" min=1 value="${data[i].count}" /><br />
+                            数量: <input class="shop-count" type="number" min=1 value="${count}" /><br />
                             价格: <span class="shop-price">${shop.price}</span><br />
-                            商品总价: <span class="shop-total">${shop.price * data[i].count}</span>
-                            <button class="btn shop-btn-del" attr-id="${data[i].id}">删除</button>
+                            商品总价: <span class="shop-total">${shop.price * count}</span>
+                            <button class="btn shop-btn-del" attr-id="${shop.id}">删除</button>
                             </div>
                         </div>`);
             }
-            this.$ele.innerHTML = arr.join('');
+            this.$main.html(arr.join(''));
         }
     }
 }())
-shopCar.init(".main");
+shopCar.init(".car-wrap");

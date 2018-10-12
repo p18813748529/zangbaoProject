@@ -18,7 +18,8 @@ var shop = (function(){
             if(localStorage.shopList){
                 $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
             }
-            this.loadHtml();
+            // this.loadHtml();
+            loadHtml();
             this.insertData();
             this.event();
         },
@@ -57,7 +58,9 @@ var shop = (function(){
             // 放大镜功能
             this.$bigImg.on("mouseenter",function(e){
                 // 进入显示大图片的盒子时让放大镜的两个盒子显示
+                _this.$minBox.stop(true);
                 _this.$minBox.animate({"opacity":"1"},200);
+                _this.$bigBox.stop(true);
                 _this.$bigBox.animate(
                     {"width": _this.$bigImgSize + "px","height":_this.$bigImgSize + "px","left": _this.$bigImgSize + 5 + "px","top":"0"},500);
                 // 滑动时让放大镜小盒子跟随，放大镜大盒子背景图偏移
@@ -85,18 +88,20 @@ var shop = (function(){
                     _this.$minBox.css({"left":x+"px","top":y+"px"});
                 });
                 // 进入时阻止浏览器鼠标滚轮事件的默认行为
-                $(document).on("mousewheel DOMMouseScroll", function (e) {
+                document.onmousewheel= function (e) {
                     if(e.preventDefault){
                         e.preventDefault();
                     }else{
                         e.returnValue = false;
                     }
-                });
+                };
             });
             this.$bigImg.on("mouseleave",function(e){
                 _this.$minBox.animate({"opacity":"0"},200);
                 _this.$bigBox.animate(
                     {"width":"0","height":"0","left":"50%","top":"50%"},500);
+                // 离开时取消阻止浏览器鼠标滚轮事件的默认行为
+                document.onmousewheel = null;
             });
             // 给显示大图片的盒子添加鼠标滚动事件，
             // 向上滑时让放大镜小盒子缩小，放大镜大盒子背景图放大
@@ -162,21 +167,12 @@ var shop = (function(){
                 }
             });
         },
-        loadHtml:function(){
-            $("header").load("common.html .h-contain",function(){
-                if(localStorage.shopList){
-                    $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
-                }
-            });
-            $("footer").load("common.html .f-contain");
-        },
         // 获取商品数据
         insertData:function(){
             var _this = this;
             function success(data) {
                 if (data["code"] === "200") {
-                    data = JSON.parse(data["data"]);
-                    var $shopImg = _this.$shop.find(".shop-img .img-list");
+                    data = JSON.parse(data["data"])[0];
                     var imgs = data["imgs"].split(",");
                     _this.$minImg.css("width",imgs.length * 65 + "px");
                     _this.$bigImg.css("backgroundImage",`url(${imgs[0]})`);
@@ -197,7 +193,7 @@ var shop = (function(){
                     _this.$shop.find(".shop-name").text(data["msg"]);
                 }
             }
-            sendAjax("php/getShop.php", { data: { shopId: _this.shopId }, success: success });
+            sendAjax("php/getShop.php", { data: { shopId: `[${_this.shopId}]` }, success: success });
         },
         // 添加到购物车
         addCar:function(id, count) {
