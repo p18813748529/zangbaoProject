@@ -4,6 +4,9 @@
 .fr {
   float: right;
 }
+header {
+  background-color: #fff;
+}
 header .fixed-target {
   position: fixed;
   width: 100%;
@@ -432,6 +435,8 @@ section .nav-wrap .nav-con .nav-list .list-con .kind {
 section .nav-wrap .nav-con .nav-list .list-con .kind dt {
   float: left;
   margin-right: 15px;
+  width: 100px;
+  text-align: right;
 }
 section .nav-wrap .nav-con .nav-list .list-con .kind dt a {
   display: inline-block;
@@ -439,13 +444,20 @@ section .nav-wrap .nav-con .nav-list .list-con .kind dt a {
   color: #333;
   font-weight: bold;
 }
+section .nav-wrap .nav-con .nav-list .list-con .kind dt a:hover {
+  color: #ff5555;
+}
 section .nav-wrap .nav-con .nav-list .list-con .kind dd a {
   display: inline-block;
   padding: 0 10px;
   color: #7c7171;
 }
+section .nav-wrap .nav-con .nav-list .list-con .kind dd a:hover {
+  color: #ff5555;
+}
 footer {
   border-top: 1px solid #eee;
+  background-color: #fff;
 }
 footer .f-contain {
   width: 1200px;

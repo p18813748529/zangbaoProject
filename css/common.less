@@ -5,6 +5,7 @@
     float: right;
 }
 header {
+    background-color: #fff;
     .fixed-target {
         position: fixed;
         width: 100%;
@@ -438,11 +439,16 @@ section{
                         dt {
                             float: left;
                             margin-right: 15px;
+                            width: 100px;
+                            text-align: right;
                             a {
                                 display: inline-block;
                                 padding: 0 15px;
                                 color: #333;
                                 font-weight: bold;
+                                &:hover{
+                                    color:#ff5555;
+                                }
                             }
                         }
                         dd{
@@ -450,6 +456,9 @@ section{
                                 display: inline-block;
                                 padding: 0 10px;
                                 color: #7c7171;
+                                &:hover{
+                                    color:#ff5555;
+                                }
                             }
                         }
                     }
@@ -460,6 +469,7 @@ section{
 }
 footer {
     border-top: 1px solid #eee;
+    background-color: #fff;
     .f-contain {
         width: 1200px;
         margin: 0 auto;

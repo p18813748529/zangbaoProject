@@ -90,7 +90,7 @@
   background-color: #fc3601;
   background-position-x: 3.5px;
 }
-.fixed-right .fixed-right-b span.toTop :hover {
+.fixed-right .fixed-right-b span.toTop:hover {
   background-position-x: -126.5px;
 }
 .fixed-right .fixed-right-b .code {
@@ -110,10 +110,6 @@
 }
 .fixed-right .fixed-right-b .toTop {
   background-position: -332px -290px;
-}
-/* section */
-section {
-  overflow: hidden;
 }
 section .banner-wrap {
   height: 360px;
@@ -442,4 +438,3 @@ section .contain .zang-img img {
   width: 1200px;
   height: 80px;
 }
-/* footer */

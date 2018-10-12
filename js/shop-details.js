@@ -7,10 +7,10 @@ var shop = (function(){
             this.$minImg = this.$minImgWrap.find(".img-list");
             this.$bigBox = this.$shop.find(".big-box");
             this.$minBox = this.$shop.find(".min-box");
-            this.$bigImgSize = 300;;
-            this.$minBoxMin = 75;
-            this.$minBoxMax = 298;
-            this.$multiple = 3;
+            this.$bigImgSize = 360;;
+            this.$minBoxMin = 90;
+            this.$minBoxMax = 358;
+            this.$multiple = 2;
             this.$shopData = this.$shop.find(".shop-data");
             this.$countInp = $(".shop .count input");
             this.$tipBox = $(".tip-box");
@@ -71,8 +71,8 @@ var shop = (function(){
                     var maxX = _this.$bigImg[0].clientWidth - _this.$minBox[0].offsetWidth;
                     var maxY = _this.$bigImg[0].clientHeight - _this.$minBox[0].offsetHeight;
                     e = e || window.event;
-                    var x = e.clientX - _x;
-                    var y = e.clientY - _y;
+                    var x = e.pageX - _x;
+                    var y = e.pageY - _y;
                     if(x<0){
                         x = 0;
                     }else if(x>maxX){
@@ -180,7 +180,7 @@ var shop = (function(){
                     _this.$bigBox.css("backgroundImage",`url(${imgs[0]})`);
                     _this.$bigBox.css("backgroundSize",`${_this.$multiple * _this.$bigImgSize}px`);
                     for(var i = 0; i < imgs.length; i++){
-                        var $div = $(`<li class="img-slide")"></li>`);
+                        var $div = $(`<li class="img-slide"></li>`);
                         $div.css("background-image",`url(${imgs[i]}`);
                         _this.$minImg.append($div);
                     }
@@ -197,8 +197,48 @@ var shop = (function(){
         },
         // 添加到购物车
         addCar:function(id, count) {
-            var shopList = localStorage.shopList || '[]';
-            shopList = JSON.parse(shopList);
+            var _this = this;
+            // var shopList = localStorage.shopList || '[]';
+            // shopList = JSON.parse(shopList);
+            // for (var j = 0; j < shopList.length; j++) {
+            //     if (shopList[j].id === id) {
+            //         // 证明商品已经存在
+            //         shopList[j].count = Number(shopList[j].count) + Number(count);
+            //         break;
+            //     }
+            // }
+            // if (j === shopList.length) {
+            //     // 商品不存在, 添加一条新数据
+            //     shopList.push({ id: id, count: count });
+            // }
+            // localStorage.shopList = JSON.stringify(shopList);
+            // // 购物车图标显示商品数目
+            // $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
+            var cookie = new UseCookie();
+            var token = cookie.getCookie("zangbaoToken");
+            if(token){
+                var arr = token.split("_");
+                var options = {
+                    method:"POST",
+                    data:{
+                        username:arr[0],
+                        token:arr[1],
+                        type: false
+                    },
+                    success:function(data){
+                        if(data.code==200){
+                            _this.addDbCar('pagege','nse9sb0uq1aidov569aa',{id:id,count:count});
+                        }else{
+                            _this.addLocalCar(id,count);
+                        }
+                    }
+                };
+                sendAjax("php/check_token.php",options);
+            }
+        },
+        // 添加到本地存储购物车
+        addLocalCar:function(id,count){
+            var shopList = JSON.parse(localStorage.shopList || '[]');
             for (var j = 0; j < shopList.length; j++) {
                 if (shopList[j].id === id) {
                     // 证明商品已经存在
@@ -213,6 +253,24 @@ var shop = (function(){
             localStorage.shopList = JSON.stringify(shopList);
             // 购物车图标显示商品数目
             $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
+        },
+        // 添加商品到用户的数据库购物车
+        addDbCar:function(username,token,shop){
+            var options = {
+                method:"POST",
+                data:{
+                    username:username,
+                    token:token,
+                    shop:shop,
+                    type:"add"
+                },
+                success:function(data){
+                    if(data.code==200){
+                        
+                    }
+                }
+            };
+            sendAjax("php/car.php",options);
         }
     }
 }());

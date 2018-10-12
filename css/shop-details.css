@@ -1,23 +1,20 @@
 body {
-  background: #fff;
+  background: #f8f8f8;
 }
 .shop {
-  width: 800px;
+  width: 1200px;
   margin: 50px auto;
   border: 1px solid #999;
-  border-radius: 20px;
-  padding: 10px;
   background-color: #fff;
   user-select: none;
 }
 .shop .shop-img {
   float: left;
-  width: 300px;
-  height: 370px;
-  margin-right: 10px;
+  margin: 20px;
 }
 .shop .shop-img .big-img {
-  height: 300px;
+  height: 360px;
+  width: 360px;
   border: 1px solid #eee;
   margin-bottom: 10px;
   position: relative;
@@ -34,8 +31,8 @@ body {
   background-repeat: no-repeat;
 }
 .shop .shop-img .big-img .min-box {
-  width: 100px;
-  height: 100px;
+  width: 180px;
+  height: 180px;
   border: 1px solid #ddd;
   position: absolute;
   top: 0;
@@ -66,25 +63,76 @@ body {
 }
 .shop .shop-data {
   float: left;
+  width: 590px;
+  margin-top: 20px;
 }
 .shop .shop-data span {
   line-height: 30px;
 }
+.shop .shop-data .address {
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+  color: #666;
+  padding-left: 12px;
+}
 .shop .shop-name {
   font-size: 16px;
+  line-height: 16px;
   color: #333;
   font-weight: bold;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+.shop .price-mete {
+  padding: 0 0 20px 10px;
+  background: url("../imgs/shop/goods_meta_bg.png") no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.shop .price-mete .mete-wrap {
+  padding-top: 15px;
+  font-size: 12px;
+  color: #999;
+}
+.shop .price-mete .saoCode {
+  width: 100px;
+  height: 100px;
+  background: url("../imgs/shop/105539.png") no-repeat;
+  background-size: cover;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+.shop .price-mete .saoCode .code-tip {
+  display: block;
+  text-align: center;
+  width: 100px;
+  position: absolute;
+  margin: 0;
+  top: 100px;
+  font-size: 12px;
+  color: #999;
 }
 .shop .shop-market-price {
   text-decoration: line-through;
+  color: #fc3601;
 }
-.shop .shop-price {
-  color: red;
-  font-size: 20px;
+.shop .shop-price-wrap {
+  line-height: 25px;
+}
+.shop .shop-price-wrap .shop-price {
+  font-size: 25px;
+  font-weight: 700;
+  vertical-align: middle;
+  text-shadow: 0 1px 0 #6C0900;
+  color: #fc3601;
 }
 .shop .count {
   position: relative;
   margin-bottom: 5px;
+  float: left;
+  width: 65px;
 }
 .shop .count input {
   color: #333;
@@ -122,9 +170,11 @@ body {
 }
 .shop .box {
   position: relative;
+  padding-left: 30px;
 }
 .shop .box .add-to-car {
   background: #fc3601;
+  margin: 0 8px 0 5px;
 }
 .shop .box .add-to-car:hover {
   background: #cf0010;
@@ -173,4 +223,11 @@ body {
   height: 42px;
   border-radius: 4px;
   cursor: pointer;
+}
+.shop .company {
+  float: left;
+  width: 207px;
+  height: 500px;
+  border-left: 1px solid #eee;
+  background: #aaa;
 }

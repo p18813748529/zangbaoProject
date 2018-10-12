@@ -1,27 +1,20 @@
 <?php
     header("Content-type:text/html; charset=utf-8");
-    function randomkeys($length)
-    {
-     $pattern='1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLOMNOPQRSTUVWXYZ';
-     $key = '';
-     for($i=0;$i<$length;$i++)
-     {
-       $key .= $pattern{mt_rand(0,35)};    //生成php随机数
-     }
-     return $key;
-    }
+    include "public/connect_db.php";
+    include "public/rankey.php";
     $inp = json_decode(file_get_contents("php://input"));
     $username = $inp -> {"username"};
     $password = $inp -> {"password"};
-    $token = randomkeys(20);
+    $rankey = new rankey();
+    $token = $rankey -> randomkeys(20);
     $sqlUpdate = "UPDATE user SET token='$token' WHERE username='$username' AND password='$password'";
     $sqlSelect = "SELECT * FROM user WHERE username='$username' AND password='$password'";
-    $coon = new mysqli("localhost","root","","zangbaoproject","3306");
-    $result = $coon -> query($sqlSelect);
-    $row = $result -> fetch_assoc();
+    $coon = new db();
+    $row = $coon -> Query($sqlSelect,2);
     $res = array();
     if($row){
-        $result = $coon -> query($sqlUpdate);
+        // 如果查询到该用户，则赋予该用户一个随机token
+        $result = $coon -> Query($sqlUpdate,3);
         if($result){
             $res = array("code" => 200, "msg" => "", "token" => $username."_".$token);
         }else{
