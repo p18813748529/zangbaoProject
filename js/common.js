@@ -1,14 +1,11 @@
 var loginStatus = false;
-function isLogin(){
+function isLogin(fn,_this){
     var cookie = new UseCookie();
     var token = cookie.getCookie("zangbaoToken");
     if(token){
-        var arr = token.split("_");
         var options = {
             method:"POST",
             data:{
-                username:arr[0],
-                token:arr[1],
                 type: false
             },
             success:function(data){
@@ -16,6 +13,21 @@ function isLogin(){
                     loginStatus = true;
                     $("header .top .top-left").addClass("logined");
                     $("header .top .top-left p em").text(data.username);
+                    shopList = JSON.parse(data.shopCar || "[]");
+                    if(shopList.length>0){
+                        $(".shop-car em").text(shopList.length);
+                    }
+                }else{
+                    if(localStorage.shopList){
+                        $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
+                    }
+                }
+                if(typeof fn === "function"){
+                    if(typeof _this == "object" && _this != null){
+                        fn.call(_this);
+                    }else{
+                        fn();
+                    }
                 }
             }
         };
@@ -24,18 +36,26 @@ function isLogin(){
             loginStatus = false;
             $("header .top .top-left").removeClass("logined");
             $("header .top .top-left p em").text("");
-            cookie.removeCookie("zangbaoToken");
             options.data.type = true;
+            options.data.success = function(data){
+                if(data.code==200){
+                    cookie.removeCookie("zangbaoToken");
+                }
+                if(typeof fn === "function"){
+                    if(typeof _this == "object" && _this != null){
+                        fn.call(_this);
+                    }else{
+                        fn();
+                    }
+                }
+            }
             sendAjax("php/check_token.php",options);
         });
     }
 }
-function loadHtml(){
+function loadHtml(fn,_this){
     $(".h-contain").load("common.html .h-contain",function(){
-        isLogin();
-        if(localStorage.shopList){
-            $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
-        }
+        isLogin(fn,_this);
     });
     $(".nav-wrap").load("common.html .nav-con",function(){
         $(".nav-list").on("mouseenter",function(){

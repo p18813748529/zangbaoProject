@@ -16,6 +16,7 @@ body {
   background: #fcfcfc;
   padding: 20px;
   border: 1px solid #ddd;
+  user-select: none;
 }
 .main .shop-box img {
   width: 90px;
@@ -24,8 +25,32 @@ body {
   float: left;
   margin-right: 10px;
 }
-.main .shop-box div {
+.main .shop-box .shop-mete {
+  width: 750px;
+  height: 100px;
   float: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 12px;
+  color: #333;
+}
+.main .shop-box .shop-mete .shop-total {
+  color: #f40;
+  font-size: 14px;
+}
+.main .shop-box .shop-mete .shop-btn-del {
+  width: 50px;
+  height: 25px;
+  cursor: pointer;
+  outline: none;
+  background: #ddd;
+  border: 1px solid #ccc;
+}
+.main .shop-box .shop-mete .shop-btn-del:hover {
+  color: #fff;
+  border-color: #f40;
+  background: #f40;
 }
 .main .shop-box .shop-name {
   font-size: 14px;
@@ -87,6 +112,12 @@ body {
   background: #b0b0b0;
   float: right;
 }
-.total .total-btn:hover {
+.total .no-allowed {
+  cursor: not-allowed;
+}
+.total .allowed {
+  cursor: pointer;
+}
+.total .allowed:hover {
   background: #ff4400;
 }

@@ -4,24 +4,34 @@ body {
 .shop {
   width: 1200px;
   margin: 50px auto;
-  border: 1px solid #999;
+  border: 1px solid #eee;
   background-color: #fff;
   user-select: none;
 }
 .shop .shop-img {
   float: left;
   margin: 20px;
+  position: relative;
 }
 .shop .shop-img .big-img {
   height: 360px;
   width: 360px;
   border: 1px solid #eee;
   margin-bottom: 10px;
-  position: relative;
   background-size: cover;
-  border: 1px solid #666;
+  position: relative;
 }
-.shop .shop-img .big-img .big-box {
+.shop .shop-img .big-img .min-box {
+  width: 180px;
+  height: 180px;
+  border: 1px solid #eee;
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  opacity: 0;
+  cursor: crosshair;
+}
+.shop .shop-img .big-box {
   width: 0;
   height: 0;
   position: absolute;
@@ -30,21 +40,11 @@ body {
   top: 50%;
   background-repeat: no-repeat;
 }
-.shop .shop-img .big-img .min-box {
-  width: 180px;
-  height: 180px;
-  border: 1px solid #ddd;
-  position: absolute;
-  top: 0;
-  z-index: 5;
-  opacity: 0;
-  cursor: crosshair;
-}
 .shop .shop-img .img-list-wrap {
   overflow: hidden;
   height: 60px;
   position: relative;
-  border: 1px solid #666;
+  border: 1px solid #eee;
 }
 .shop .shop-img .img-list-wrap .img-list {
   position: absolute;
@@ -229,5 +229,61 @@ body {
   width: 207px;
   height: 500px;
   border-left: 1px solid #eee;
-  background: #aaa;
+}
+.shop .company .com-name {
+  line-height: 72px;
+  text-align: center;
+}
+.shop .company .com-name a {
+  font-size: 12px;
+  font-weight: bold;
+  color: #333;
+  transition: 0.3s;
+}
+.shop .company .com-name a:hover {
+  color: #C81623;
+}
+.shop .company .com-store {
+  height: 90px;
+  border: 1px solid #eee;
+  border-width: 1px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.shop .company .com-store .score {
+  display: flex;
+  justify-content: space-around;
+  font-size: 12px;
+  color: #777;
+}
+.shop .company .com-store .score li {
+  float: left;
+}
+.shop .company .com-store .store {
+  display: flex;
+  justify-content: space-around;
+}
+.shop .company .com-store .store a {
+  float: left;
+  padding: 8px 10px;
+  font-size: 12px;
+  border-width: 1px;
+  border-style: solid;
+}
+.shop .company .com-store .store a.in-store {
+  color: #fff;
+  background: #333;
+  border-color: #333;
+}
+.shop .company .com-store .store a.keep-store {
+  color: #333;
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+.shop .company .com-contact {
+  font-size: 12px;
+  color: #999;
+  line-height: 24px;
+  padding: 6px;
 }

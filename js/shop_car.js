@@ -5,30 +5,24 @@ var shopCar = (function(){
             this.$ele = $(ele);
             this.$main = this.$ele.find(".main");
             this.$total = this.$ele.find(".total");
-            loadHtml();
+            // 加载html，并验证用户是否登录，再渲染购物车数据
+            loadHtml(this.getData,this);
             this.event();
-            this.getData();
+            // this.getData();
         },
         event: function() {
             var _this = this;
             this.$main.on("input",".shop-count",function(e) {
                 // 获取商品总价
-                $(this).siblings(".shop-total").text(this.value * $(this).siblings('.shop-price').text());
+                $(this).parents(".shop-mete").find(".shop-total").text("￥" +
+                    (this.value * $(this).parents(".shop-mete").find('.shop-price').text()));
             });
             this.$main.on("click",".shop-check",function(){
                 _this.total();
             });
+            // 删除按钮，用户已登录时删除的是数据库的数据，未登录时删除的是本地的数据
             this.$main.on("click",".shop-btn-del",function(){
-                var shopId = this.getAttribute("attr-id");
-                for(var j = 0; j < _this.shopList.length; j++) {
-                    if(_this.shopList[j].id == shopId) {
-                        // 获取商品信息
-                        _this.shopList.splice(j,1);
-                        break;
-                    }
-                }
-                localStorage.setItem("shopList",JSON.stringify(_this.shopList));
-                this.parentNode.parentNode.remove();
+                _this.removeCar(this);
             });
             this.$total.find(".select-all").on("click",function(){
                 if($(this).prop("checked")){
@@ -53,6 +47,13 @@ var shopCar = (function(){
                 }
             }
             this.$total.find(".total-price em").text(totalPrice+"元");
+            if(totalPrice>0){
+                this.$total.find(".total-btn").addClass("allowed");
+                this.$total.find(".total-btn").removeClass("no-allowed");
+            }else{
+                this.$total.find(".total-btn").removeClass("allowed");
+                this.$total.find(".total-btn").addClass("no-allowed");
+            }
         },
         // 获取购物车数据,并通过id获取数据库的商品数据
         getData: function() {
@@ -121,16 +122,52 @@ var shopCar = (function(){
                 arr.push(`<div class="shop-box">
                             <input type="checkbox" class="shop-check"/>
                             <img src="${shop.imgs[0]}"/>
-                            <div>
-                            商品名称:<span class="shop-name">${shop.shopName}</span><br />
-                            数量: <input class="shop-count" type="number" min=1 value="${shop.count}" /><br />
-                            价格: <span class="shop-price">${shop.price}</span><br />
-                            商品总价: <span class="shop-total">${shop.price * shop.count}</span>
-                            <button class="btn shop-btn-del" attr-id="${shop.id}">删除</button>
+                            <div class="shop-mete">
+                                <div class="shop-name-wrap">商品名称: <span class="shop-name">${shop.shopName}</span></div>
+                                <div class="shop-count-wrap">数量: <input class="shop-count" type="number" min=1 value="${shop.count}" /></div>
+                                <div class="shop-price-wrap">价格: ￥<span class="shop-price">${shop.price}</span></div>
+                                <div class="shop-total-wrap">商品总价: <span class="shop-total">￥${shop.price * shop.count}</span></div>
+                                <button class="btn shop-btn-del" attr-id="${shop.id}">删除</button>
                             </div>
                         </div>`);
             }
             this.$main.html(arr.join(''));
+        },
+        removeCar:function(btn){
+            if(loginStatus){
+                this.removeDbCar(btn);
+            }else{
+                this.removeLocalCar(btn);
+            }
+        },
+        removeLocalCar:function(btn){
+            var shopId = btn.getAttribute("attr-id");
+            for(var j = 0; j < this.shopList.length; j++) {
+                if(this.shopList[j].id == shopId) {
+                    // 获取商品信息
+                    this.shopList.splice(j,1);
+                    break;
+                }
+            }
+            $(".shop-car em").text(this.shopList.length);
+            localStorage.setItem("shopList",JSON.stringify(this.shopList));
+            btn.parentNode.parentNode.remove();
+        },
+        removeDbCar:function(btn){
+            var shopId = btn.getAttribute("attr-id");
+            var options = {
+                method:"POST",
+                data:{
+                    shop:{id:shopId},
+                    type:"remove"
+                },
+                success:function(data){
+                    if(data.code==200){
+                        btn.parentNode.parentNode.remove();
+                    }
+                }
+            };
+            sendAjax("php/car.php",options);
         }
     }
 }())

@@ -2,9 +2,9 @@
     header("Content-type:text/html; charset=utf-8");
     include "public/connect_db.php";
     $inp = json_decode(file_get_contents("php://input"));
-    $username = $inp -> {"username"};
-    // $token = substr($_COOKIE["zangbaoToken"],stripos($_COOKIE["zangbaoToken"],"_")+1);
-    $token = $inp -> {"token"};
+    $cookie = explode("_",$_COOKIE["zangbaoToken"]);
+    $username = $cookie[0];
+    $token = $cookie[1];
     $type = $inp -> {"type"};
     $sqlUpdate = "UPDATE user SET token='' WHERE username='$username'";
     $sqlSelect = "SELECT * FROM user WHERE username='$username' AND token='$token'";

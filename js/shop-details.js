@@ -65,9 +65,10 @@ var shop = (function(){
                     {"width": _this.$bigImgSize + "px","height":_this.$bigImgSize + "px","left": _this.$bigImgSize + 5 + "px","top":"0"},500);
                 // 滑动时让放大镜小盒子跟随，放大镜大盒子背景图偏移
                 $(this).on("mousemove",function(e){
-                    var _x = _this.$bigImg[0].offsetLeft + _this.$bigImg[0].clientLeft
-                        + _this.$minBox[0].offsetWidth/2;
-                    var _y = _this.$bigImg[0].offsetTop + _this.$minBox[0].offsetHeight/2;
+                    var _x = _this.$bigImg[0].offsetLeft + _this.$bigImg.parent()[0].offsetLeft 
+                        + _this.$bigImg[0].clientLeft + _this.$minBox[0].offsetWidth/2;
+                    var _y = _this.$bigImg[0].offsetTop + _this.$bigImg.parent()[0].offsetTop 
+                        + _this.$minBox[0].offsetHeight/2;
                     var maxX = _this.$bigImg[0].clientWidth - _this.$minBox[0].offsetWidth;
                     var maxY = _this.$bigImg[0].clientHeight - _this.$minBox[0].offsetHeight;
                     e = e || window.event;
@@ -234,7 +235,11 @@ var shop = (function(){
                 },
                 success:function(data){
                     if(data.code==200){
-                        
+                        // 添加成功让页面的购物车数目更新
+                        var shopList = JSON.parse(data.shopCar || "[]")
+                        if(shopList.length>0){
+                            $(".shop-car em").text(shopList.length);
+                        }
                     }
                 }
             };

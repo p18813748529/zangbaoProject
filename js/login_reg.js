@@ -109,11 +109,14 @@ var login_reg = (function(){
             return function(data) {
                 // 如果验证通过，跳转到用户页
                 if(data.code==200){
+                    // 如果勾选了七天免登录，则给token设置七天后过期，否则浏览器关闭就自动退出登录
                     var time = _this.$sevenDay.checked ? "_true; " 
                         + "max-age=" + (7*24*60*60) + ";" : ";";
                     document.cookie = "zangbaoToken=" + data.token + time;
                     location.href = "index.html";
                 }else{
+                    // 账号或密码错误，刷新验证码
+                    _this.code = _this.reCode();
                     alert(data.msg);
                 }
             }
@@ -126,6 +129,8 @@ var login_reg = (function(){
                     alert("注册成功");
                     location.href = "index.html";
                 }else{
+                    // 注册失败，刷新验证码
+                    _this.code = _this.reCode();
                     alert(data.msg);
                 }
             }
