@@ -198,42 +198,12 @@ var shop = (function(){
         // 添加到购物车
         addCar:function(id, count) {
             var _this = this;
-            // var shopList = localStorage.shopList || '[]';
-            // shopList = JSON.parse(shopList);
-            // for (var j = 0; j < shopList.length; j++) {
-            //     if (shopList[j].id === id) {
-            //         // 证明商品已经存在
-            //         shopList[j].count = Number(shopList[j].count) + Number(count);
-            //         break;
-            //     }
-            // }
-            // if (j === shopList.length) {
-            //     // 商品不存在, 添加一条新数据
-            //     shopList.push({ id: id, count: count });
-            // }
-            // localStorage.shopList = JSON.stringify(shopList);
-            // // 购物车图标显示商品数目
-            // $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
-            var cookie = new UseCookie();
-            var token = cookie.getCookie("zangbaoToken");
-            if(token){
-                var arr = token.split("_");
-                var options = {
-                    method:"POST",
-                    data:{
-                        username:arr[0],
-                        token:arr[1],
-                        type: false
-                    },
-                    success:function(data){
-                        if(data.code==200){
-                            _this.addDbCar('pagege','nse9sb0uq1aidov569aa',{id:id,count:count});
-                        }else{
-                            _this.addLocalCar(id,count);
-                        }
-                    }
-                };
-                sendAjax("php/check_token.php",options);
+            // loginStatus为true说明是登录状态，此时将商品添加到数据库购物车
+            // 不为true则是未登录，将商品添加到本地存储购物车
+            if(loginStatus){
+                _this.addDbCar({id:id,count:count});
+            }else{
+                _this.addLocalCar(id,count);
             }
         },
         // 添加到本地存储购物车
@@ -255,12 +225,10 @@ var shop = (function(){
             $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
         },
         // 添加商品到用户的数据库购物车
-        addDbCar:function(username,token,shop){
+        addDbCar:function(shop){
             var options = {
                 method:"POST",
                 data:{
-                    username:username,
-                    token:token,
                     shop:shop,
                     type:"add"
                 },

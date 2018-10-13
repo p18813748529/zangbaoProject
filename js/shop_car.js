@@ -56,6 +56,14 @@ var shopCar = (function(){
         },
         // 获取购物车数据,并通过id获取数据库的商品数据
         getData: function() {
+            // 已登录获取数据库的购物车，未登录获取本地购物车
+            if(loginStatus){
+                this.getDbCar();
+            }else{
+                this.getLocalCar();
+            }
+        },
+        getLocalCar:function(){
             this.shopList = JSON.parse(localStorage.shopList || '[]');
             if(this.shopList.length == 0) return;
             var _this = this;
@@ -64,8 +72,22 @@ var shopCar = (function(){
                     shopId:[]
                 },
                 success: function (data){
+                    data = JSON.parse(data.data);
+                    var arr = [];
+                    // [{id: 1, count: 2}]
+                    for(var i = 0; i < data.length; i++) {
+                        // 通过id获取商品信息
+                        for(var j = 0; j < _this.shopList.length; j++) {
+                            if(_this.shopList[j].id == data[i].id) {
+                                // 获取商品信息
+                                data[i]["count"] = _this.shopList[j].count;
+                                arr.push(data[i]);
+                                break;
+                            }
+                        }
+                    }
                     // 把商品数据放到实例的属性上
-                    _this.insertData(JSON.parse(data.data));
+                    _this.insertData(arr);
                 }
             }
             for(var shop of this.shopList){
@@ -74,32 +96,36 @@ var shopCar = (function(){
             params.data.shopId = `[${params.data.shopId}]`;
             sendAjax("php/getShop.php",params);
         },
-        // 把购物车数据添加到页面中
-        insertData: function(data) {
+        getDbCar:function(){
             var _this = this;
-            var arr = [];
-            // [{id: 1, count: 2}]
-            for(var i = 0; i < data.length; i++) {
-                // 通过id获取商品信息
-                var shop;
-                var count;
-                for(var j = 0; j < this.shopList.length; j++) {
-                    if(this.shopList[j].id == data[i].id) {
-                        // 获取商品信息
-                        shop = data[i];
-                        count = this.shopList[j].count;
-                        break;
+            var options = {
+                method:"POST",
+                data:{
+                    shop:"",
+                    type:"get"
+                },
+                success:function(data){
+                    if(data.code==200){
+                        _this.insertData(JSON.parse(data.data));
                     }
                 }
+            };
+            sendAjax("php/car.php",options);
+        },
+        // 把购物车数据添加到页面中
+        insertData: function(data) {
+            var arr = [];
+            for(var i = 0; i < data.length; i++) {
+                var shop = data[i];
                 shop.imgs = shop.imgs.split(",");
                 arr.push(`<div class="shop-box">
                             <input type="checkbox" class="shop-check"/>
                             <img src="${shop.imgs[0]}"/>
                             <div>
                             商品名称:<span class="shop-name">${shop.shopName}</span><br />
-                            数量: <input class="shop-count" type="number" min=1 value="${count}" /><br />
+                            数量: <input class="shop-count" type="number" min=1 value="${shop.count}" /><br />
                             价格: <span class="shop-price">${shop.price}</span><br />
-                            商品总价: <span class="shop-total">${shop.price * count}</span>
+                            商品总价: <span class="shop-total">${shop.price * shop.count}</span>
                             <button class="btn shop-btn-del" attr-id="${shop.id}">删除</button>
                             </div>
                         </div>`);

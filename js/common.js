@@ -1,3 +1,4 @@
+var loginStatus = false;
 function isLogin(){
     var cookie = new UseCookie();
     var token = cookie.getCookie("zangbaoToken");
@@ -12,6 +13,7 @@ function isLogin(){
             },
             success:function(data){
                 if(data.code==200){
+                    loginStatus = true;
                     $("header .top .top-left").addClass("logined");
                     $("header .top .top-left p em").text(data.username);
                 }
@@ -19,6 +21,7 @@ function isLogin(){
         };
         sendAjax("php/check_token.php",options);
         $("#sign-out").on("click",function(){
+            loginStatus = false;
             $("header .top .top-left").removeClass("logined");
             $("header .top .top-left p em").text("");
             cookie.removeCookie("zangbaoToken");
