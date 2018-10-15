@@ -63,7 +63,7 @@ var shop = (function(){
                 _this.$bigBox.stop(true);
                 _this.$bigBox.animate(
                     {"width": _this.$bigImgSize + "px","height":_this.$bigImgSize + "px","left": _this.$bigImgSize + 5 + "px","top":"0"},500);
-                // 滑动时让放大镜小盒子跟随，放大镜大盒子背景图偏移
+                // 滑动时让放大镜小盒子跟随，放大镜大盒子背景图随之偏移
                 $(this).on("mousemove",function(e){
                     var _x = _this.$bigImg[0].offsetLeft + _this.$bigImg.parent()[0].offsetLeft 
                         + _this.$bigImg[0].clientLeft + _this.$minBox[0].offsetWidth/2;
@@ -97,6 +97,7 @@ var shop = (function(){
                     }
                 };
             });
+            // 离开时让放大镜的两个盒子隐藏
             this.$bigImg.on("mouseleave",function(e){
                 _this.$minBox.animate({"opacity":"0"},200);
                 _this.$bigBox.animate(
@@ -189,7 +190,7 @@ var shop = (function(){
                     _this.$shop.find(".shop-name").text(data["shopName"]);
                     _this.$shop.find(".shop-market-price").text("￥" + data["marketPrice"]);
                     _this.$shop.find(".shop-price").text("￥" + data["price"]);
-                    _this.$shop.find(".shop-count").text(data["count"]);
+                    _this.$shop.find(".shop-count").text(data["shopCount"]);
                 } else {
                     _this.$shop.find(".shop-name").text(data["msg"]);
                 }
@@ -230,7 +231,7 @@ var shop = (function(){
             var options = {
                 method:"POST",
                 data:{
-                    shop:shop,
+                    shop:JSON.stringify([shop]),
                     type:"add"
                 },
                 success:function(data){

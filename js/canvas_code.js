@@ -8,9 +8,10 @@ function getColor(min, max) {
     return ["rgb(",rgb.join(","),")"].join("");
 }
 // getCode(canvas, width, height)
-function getCode(cvs, w, h) {
+function getCode(cvs, w, h,s) {
     w = w || 120;
     h = h || 40;
+    s = s || 4;
     var ctx = cvs.getContext("2d");
     //填充背景颜色,颜色要浅一点
     ctx.fillStyle = getColor(180, 230);
@@ -18,7 +19,7 @@ function getCode(cvs, w, h) {
     //随机产生验证码字符
     var pool = "ABCDEFGHIJKLIMNOPQRSTUVWSYZ1234567890";
     var code = '';
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < s; i++) {
         // 获取随机验证码的内容
         var c = pool[getRan(0, pool.length)];
         code += c;
@@ -44,7 +45,7 @@ function getCode(cvs, w, h) {
         ctx.closePath();
         ctx.stroke();
     }
-    //随机产生50个圆点
+    //随机产生30个圆点
     for (var i = 0; i < 50; i++) {
         ctx.beginPath();
         ctx.arc(getRan(0, w), getRan(0, h), 1, 0, 2 * Math.PI);

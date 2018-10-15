@@ -219,10 +219,14 @@ section .contain .tab-box .tabs li.select a {
   color: #fc3601;
 }
 section .contain .tab-box .tab-con {
+  display: none;
   border: 1px solid #ddd;
   border-top: 2px solid #fc3601;
   padding: 10px 9px;
   margin-bottom: 4px;
+}
+section .contain .tab-box .tab-con:nth-child(1) {
+  display: block;
 }
 section .contain .tab-box .tab-con li {
   float: left;
@@ -315,6 +319,7 @@ section .contain .con .recom {
   font-weight: bold;
 }
 section .contain .con .recom li {
+  cursor: pointer;
   float: left;
   width: 100px;
   padding-left: 10px;
@@ -353,6 +358,10 @@ section .contain .con .list {
   width: 604px;
   height: 495px;
   background: #fff;
+  display: none;
+}
+section .contain .con .list:nth-child(1) {
+  display: block;
 }
 section .contain .con .list:hover li {
   opacity: 0.3;

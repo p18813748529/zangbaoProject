@@ -117,6 +117,7 @@ body {
 .shop .shop-market-price {
   text-decoration: line-through;
   color: #fc3601;
+  font-weight: bold;
 }
 .shop .shop-price-wrap {
   line-height: 25px;

@@ -229,10 +229,14 @@ section{
                 }
             }
             .tab-con {
+                display: none;
                 border: 1px solid #ddd;
                 border-top: 2px solid #fc3601;
                 padding: 10px 9px;
                 margin-bottom: 4px;
+                &:nth-child(1){
+                    display: block;
+                }
                 li {
                     float: left;
                     width: 285px;
@@ -324,6 +328,7 @@ section{
                 color: #666;
                 font-weight: bold;
                 li {
+                    cursor: pointer;
                     float: left;
                     width: 100px;
                     padding-left: 10px;
@@ -363,6 +368,10 @@ section{
                 width: 604px;
                 height: 495px;
                 background: #fff;
+                display: none;
+                &:nth-child(1){
+                    display: block;
+                }
                 &:hover {
                     li {
                         opacity: 0.3;

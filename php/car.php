@@ -5,7 +5,7 @@
     $cookie = explode("_",$_COOKIE["zangbaoToken"]);
     $username = $cookie[0];
     $token = $cookie[1];
-    $shop = $inp -> {"shop"};
+    $shop = json_decode($inp -> {"shop"});
     $type = $inp -> {"type"};
     $sqlSelect = "SELECT * FROM user WHERE username='$username' AND token='$token'";
     $coon = new db();
@@ -19,17 +19,19 @@
         }
         $shopList = json_decode($shopCar);
         if($type=="add"){
-            for($i = 0; $i < count($shopList); $i++){
-                // 用户购物车已存在该商品，数量相加
-                if($shop -> {"id"} === $shopList[$i] -> {"id"}){
-                    $shopList[$i] -> {"count"} = (int)$shopList[$i] -> {"count"} + (int)$shop -> {"count"};
-                    $r = json_encode($shopList[$i]);
-                    break;
+            for($j = 0; $j < count($shop); $j++){
+                for($i = 0; $i < count($shopList); $i++){
+                    // 用户购物车已存在该商品，数量相加
+                    if($shop[$j] -> {"id"} === $shopList[$i] -> {"id"}){
+                        $shopList[$i] -> {"count"} = (int)$shopList[$i] -> {"count"} + (int)$shop[$j] -> {"count"};
+                        $r = json_encode($shopList[$i]);
+                        break;
+                    }
                 }
-            }
-            // 用户购物车不存在该商品，添加该商品
-            if($i==count($shopList)){
-                array_push($shopList,$shop);
+                // 用户购物车不存在该商品，添加该商品
+                if($i==count($shopList)){
+                    array_push($shopList,$shop[$j]);
+                }
             }
             // 最后添加到用户的数据库
             $shopList = json_encode($shopList);

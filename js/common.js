@@ -37,10 +37,7 @@ function isLogin(fn,_this){
             $("header .top .top-left").removeClass("logined");
             $("header .top .top-left p em").text("");
             options.data.type = true;
-            options.data.success = function(data){
-                if(data.code==200){
-                    cookie.removeCookie("zangbaoToken");
-                }
+            options.success = function(data){
                 if(typeof fn === "function"){
                     if(typeof _this == "object" && _this != null){
                         fn.call(_this);
@@ -48,9 +45,24 @@ function isLogin(fn,_this){
                         fn();
                     }
                 }
+                if(data.code==800){
+                    cookie.removeCookie("zangbaoToken");
+                    location.href = "index.html";
+                }
             }
             sendAjax("php/check_token.php",options);
         });
+    }else{
+        if(typeof fn === "function"){
+            if(typeof _this == "object" && _this != null){
+                fn.call(_this);
+            }else{
+                fn();
+            }
+        }
+        if(localStorage.shopList){
+            $(".shop-car em").text(JSON.parse(localStorage.shopList).length);
+        }
     }
 }
 function loadHtml(fn,_this){

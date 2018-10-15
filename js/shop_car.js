@@ -16,27 +16,37 @@ var shopCar = (function(){
                 // 获取商品总价
                 $(this).parents(".shop-mete").find(".shop-total").text("￥" +
                     (this.value * $(this).parents(".shop-mete").find('.shop-price').text()));
+                // 如果此商品已勾选，则改变数量时结算总价应该随之变化
+                if($(this).parents(".shop-box").find(".shop-check").prop("checked")){
+                    _this.total();
+                }
             });
             this.$main.on("click",".shop-check",function(){
+                // 如果所有的商品都勾选了，则全选按钮也应该是勾选状态，反之不勾选
+                if(_this.$main.find(".shop-check").length==_this.$main.find(".shop-check:checked").length){
+                    _this.$total.find(".select-all").prop("checked",true);
+                }else{
+                    _this.$total.find(".select-all").prop("checked",false);
+                }
                 _this.total();
             });
             // 删除按钮，用户已登录时删除的是数据库的数据，未登录时删除的是本地的数据
             this.$main.on("click",".shop-btn-del",function(){
                 _this.removeCar(this);
             });
+            // 全选按钮
             this.$total.find(".select-all").on("click",function(){
                 if($(this).prop("checked")){
                     _this.$main.find(".shop-box .shop-check").prop("checked",true);
-                    _this.total();
                 }else{
                     _this.$main.find(".shop-box .shop-check").prop("checked",false);
-                    _this.$total.find(".total-price em").text(0);
                 }
+                _this.total();
             });
         },
         total:function(){
             var checkShop = this.$main.find(".shop-box").has("input:checkbox:checked");
-            var shopList = JSON.parse(localStorage.shopList);
+            var shopList = this.shopList;
             var totalPrice = 0;
             for(var i = 0; i < checkShop.length; i++){
                 var shopId = $(checkShop[i]).find(".shop-btn-del").attr("attr-id");
@@ -64,6 +74,7 @@ var shopCar = (function(){
                 this.getLocalCar();
             }
         },
+        // 获取本地的购物车数据
         getLocalCar:function(){
             this.shopList = JSON.parse(localStorage.shopList || '[]');
             if(this.shopList.length == 0) return;
@@ -97,6 +108,7 @@ var shopCar = (function(){
             params.data.shopId = `[${params.data.shopId}]`;
             sendAjax("php/getShop.php",params);
         },
+        // 获取数据库的购物车数据
         getDbCar:function(){
             var _this = this;
             var options = {
@@ -107,7 +119,8 @@ var shopCar = (function(){
                 },
                 success:function(data){
                     if(data.code==200){
-                        _this.insertData(JSON.parse(data.data));
+                        _this.shopList = JSON.parse(data.data)
+                        _this.insertData(_this.shopList);
                     }
                 }
             };
@@ -133,6 +146,7 @@ var shopCar = (function(){
             }
             this.$main.html(arr.join(''));
         },
+        // 删除购物车数据，区分已登录和未登录
         removeCar:function(btn){
             if(loginStatus){
                 this.removeDbCar(btn);
@@ -140,6 +154,7 @@ var shopCar = (function(){
                 this.removeLocalCar(btn);
             }
         },
+        // 删除本地购物车数据
         removeLocalCar:function(btn){
             var shopId = btn.getAttribute("attr-id");
             for(var j = 0; j < this.shopList.length; j++) {
@@ -153,12 +168,13 @@ var shopCar = (function(){
             localStorage.setItem("shopList",JSON.stringify(this.shopList));
             btn.parentNode.parentNode.remove();
         },
+        // 删除数据库购物车数据
         removeDbCar:function(btn){
             var shopId = btn.getAttribute("attr-id");
             var options = {
                 method:"POST",
                 data:{
-                    shop:{id:shopId},
+                    shop:JSON.stringify([{id:shopId}]),
                     type:"remove"
                 },
                 success:function(data){

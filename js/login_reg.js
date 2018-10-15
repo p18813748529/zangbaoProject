@@ -56,7 +56,9 @@ var login_reg = (function(){
                 this.parentNode.classList.remove("focus-inp");
                 if(this.value===""){
                     this.value=this.getAttribute("tipmsg");
+                    this.parentNode.classList.add("focus-inp-error");
                     if(this.id==="password" || this.id==="re-password" && this.type==="password") this.type = "text";
+                    return;
                 }
                 if(this.id==="re-password"){
                     var parent = this.parentNode;
