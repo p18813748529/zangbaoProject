@@ -10,6 +10,8 @@ var index = (function(){
             this.$toCar = $(".fixed-right .car");
             this.$tab = $(".tab-box");
             this.$con = $(".con");
+            // 图片懒加载
+            this.$img = $(".shop-wrap img")
             this.tarPos = [];
             for(var i = 0; i < this.$tarTitle.length; i++){
                 this.tarPos.push(this.$tarTitle[i].offsetTop-60);
@@ -26,6 +28,11 @@ var index = (function(){
             });
             // 页面滚动到相应位置时让顶部锚点显示，并给对应的锚点添加类show
             window.onscroll=function(){
+                for(var i = 0; i < _this.$img.length; i++){
+                    if(_this.$img[i].offsetTop-document.documentElement.scrollTop-window.innerHeight<100){
+                        _this.$img[i].src=_this.$img[i].getAttribute("attr-src");
+                    }
+                }
                 var top = document.documentElement.scrollTop;
                 if(top>=_this.tarPos[0]-300){
                     if(_this.$fixedTar.css("display") == "none"){
@@ -65,6 +72,7 @@ var index = (function(){
                 $(this).parents(".con").find(".list").hide().eq($(this).parents(".con").find(".recom li").index($(this))).show();
             });
         },
+        // 开启轮播图
         startSwiper:function(){
             return new Swiper('.swiper-container', {
                 pagination: '.swiper-pagination',

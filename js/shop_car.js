@@ -153,6 +153,7 @@ var shopCar = (function(){
             }else{
                 this.removeLocalCar(btn);
             }
+
         },
         // 删除本地购物车数据
         removeLocalCar:function(btn){
@@ -180,6 +181,7 @@ var shopCar = (function(){
                 success:function(data){
                     if(data.code==200){
                         btn.parentNode.parentNode.remove();
+                        $(".shop-car em").text(JSON.parse(data.shopCar).length);
                     }
                 }
             };

@@ -43,11 +43,13 @@
                 $res = array("code" => 500, "msg" => "添加失败", "shopCar" => "");
             }
         } else if($type=="remove"){
-            for($i = 0; $i < count($shopList); $i++){
+            for($j = 0; $j < count($shop); $j++){
+                for($i = 0; $i < count($shopList); $i++){
                 // 找到对应的商品，删除
-                if($shop -> {"id"} === $shopList[$i] -> {"id"}){
-                    array_splice($shopList,$i,1);
-                    break;
+                    if($shop[$j] -> {"id"} === $shopList[$i] -> {"id"}){
+                        array_splice($shopList,$i,1);
+                        break;
+                    }
                 }
             }
             // 用户购物车不存在该商品，添加该商品
@@ -59,7 +61,7 @@
             $sqlUpdate = "UPDATE user SET shopCar='$shopList' WHERE username='$username'";
             $row = $coon -> Query($sqlUpdate,3);
             if($row){
-                $res = array("code" => 200, "msg" => "");
+                $res = array("code" => 200, "msg" => "", "shopCar" => $shopList);
             }else{
                 $res = array("code" => 500, "msg" => "删除失败");
             }
