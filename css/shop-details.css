@@ -71,10 +71,119 @@ body {
 }
 .shop .shop-data .address {
   height: 40px;
-  line-height: 40px;
   font-size: 12px;
   color: #666;
   padding-left: 12px;
+}
+.shop .shop-data .address .tip-address {
+  line-height: 40px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.shop .shop-data .address .address-wrap {
+  float: left;
+  position: relative;
+}
+.shop .shop-data .address .address-wrap .text {
+  height: 26px;
+  margin-top: 6px;
+  line-height: 26px;
+  border: 1px solid #eee;
+  padding-left: 14px;
+}
+.shop .shop-data .address .address-wrap .text span {
+  display: inline-block;
+  line-height: 26px;
+  float: left;
+}
+.shop .shop-data .address .address-wrap .text i {
+  float: left;
+  display: inline-block;
+  width: 7px;
+  height: 4px;
+  margin: 11px 7px;
+  background: url("../imgs/2014_ncs_public_img.png") no-repeat -50px -100px;
+}
+.shop .shop-data .address .address-wrap .address-con {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 6px;
+  z-index: 5;
+  width: 510px;
+  background: #fff;
+  border: 1px solid #d7d7d7;
+}
+.shop .shop-data .address .address-wrap .address-con .select {
+  height: 26px;
+  line-height: 26px;
+  border-bottom: 1px solid #eee;
+  background: #fafafa;
+}
+.shop .shop-data .address .address-wrap .address-con .select li {
+  float: left;
+  padding-left: 14px;
+  cursor: pointer;
+  border-right: 1px solid #eee;
+  display: none;
+  position: relative;
+}
+.shop .shop-data .address .address-wrap .address-con .select li span {
+  float: left;
+  line-height: 26px;
+}
+.shop .shop-data .address .address-wrap .address-con .select li i {
+  float: left;
+  display: inline-block;
+  width: 7px;
+  height: 4px;
+  margin: 11px 7px;
+  background: url("../imgs/2014_ncs_public_img.png") no-repeat -50px -100px;
+}
+.shop .shop-data .address .address-wrap .address-con .select li.selected {
+  display: block;
+}
+.shop .shop-data .address .address-wrap .address-con .select li.now-select {
+  display: block;
+  background: #fff;
+}
+.shop .shop-data .address .address-wrap .address-con .select li.now-select:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: -1px;
+  border-bottom: 1px solid #fff;
+}
+.shop .shop-data .address .address-wrap .address-con .list {
+  padding: 10px 0 0 20px;
+}
+.shop .shop-data .address .address-wrap .address-con .list .city {
+  display: none;
+}
+.shop .shop-data .address .address-wrap .address-con .list .area {
+  display: none;
+}
+.shop .shop-data .address .address-wrap .address-con .list li {
+  float: left;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 7px;
+  width: 120px;
+}
+.shop .shop-data .address .address-wrap .address-con .list li span {
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px;
+  line-height: 12px;
+}
+.shop .shop-data .address .address-wrap .address-con .list li span:hover {
+  background: #ff875a;
+  color: #fff;
+}
+.shop .shop-data .address .address-wrap .address-con .list .pro-city {
+  display: none;
 }
 .shop .shop-name {
   font-size: 16px;

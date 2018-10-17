@@ -2,6 +2,7 @@ var shop = (function(){
     return {
         init:function(ele){
             this.$shop = $(ele);
+            this.$address = $(".address-wrap");
             this.$bigImg = this.$shop.find(".big-img");
             this.$minImgWrap = this.$shop.find(".img-list-wrap");
             this.$minImg = this.$minImgWrap.find(".img-list");
@@ -136,10 +137,8 @@ var shop = (function(){
                 _this.$minBox.css({"width": w + "px","height": h + "px",
                     "left": l + "px", "top": t + "px"});
                 _this.$multiple = _this.$bigImgSize / w;
-                _this.$bigBox.stop();
                 _this.$bigBox.css({"backgroundSize":`${_this.$multiple * _this.$bigImgSize}px`
                 ,"backgroundPosition":(-_this.$multiple * l) + "px " + (-_this.$multiple * t) + "px"});
-                
             };
             // 使用时间委托监听 增加/减少商品数量、加入购物车、立即购买、查看购物车、继续购物
             this.$shopData.on("click",function(e){
@@ -168,12 +167,82 @@ var shop = (function(){
                         break;
                 }
             });
+            // 选择配送地址
+            // 鼠标划入时，显示地址列表
+            this.$address.on("mouseenter",function(){
+                _this.$address.find(".address-con").show();
+                // 如果都选择了，显示最后一级的地址
+                if(_this.$address.find(".select .now-select").length==0){
+                    _this.$address.find(".select li").eq(2).removeClass("selected")
+                    .addClass("now-select");
+                    _this.$address.find(".list ul").eq(2).show();
+                }
+            });
+            // 鼠标划出时，隐藏地址列表，将已选择的地址显示
+            this.$address.on("mouseleave",function(){
+                _this.$address.find(".address-con").hide();
+                if(_this.$address.find(".pro span").text()!=="请选择"){
+                    var text = _this.$address.find(".pro span").text()+_this.$address.find(".cit span")
+                    .text()+_this.$address.find(".are span").text();
+                    _this.$address.find(".text span").text(text.replace(/请选择/g,""));
+                }
+            });
+            this.$address.on("click",".address-list li",function(){
+                if($(this).parents(".select").length>0){
+                    $(this).nextAll().find("span").text("请选择");
+                    $(this).removeClass("selected").addClass("now-select").nextAll()
+                    .removeClass("selected now-select");
+                    _this.$address.find(".list ul").hide().eq(_this.$address.find(".select li")
+                    .index($(this))).show();
+                }else if($(this).parents(".list").length>0){
+                    _this.$address.find(".select li").eq(_this.$address.find(".list ul").index($(this)
+                    .parent())).addClass("selected").removeClass("now-select").find("span")
+                    .text($(this).find("span").text());
+                    if($(this).parent().next().length>0){
+                        _this.$address.find(".select li").eq(_this.$address.find(".list ul").index(
+                            $(this).parent().next())).addClass("now-select");
+                        // 刷新对应地址的下一级地址
+                        var adr = [];
+                        if($(this).parent().hasClass("provincial")){
+                            var arr = _this.address[$(this).parent().find("li").index($(this))]["cit"];
+                            for(var i = 0; i < arr.length; i++){
+                                adr.push(`<li><span>${arr[i]["citName"]}</span></li>`);
+                            }
+                            $(this).parent().next().html("").append(adr);
+                            _this.citiIndex = $(this).parent().find("li").index($(this));
+                        }else if($(this).parent().hasClass("city")){
+                            var arr = _this.address[_this.citiIndex]["cit"][$(this).parent().find("li").index($(this))]["areName"];
+                            for(var i = 0; i < arr.length; i++){
+                                adr.push(`<li><span>${arr[i]}</span></li>`);
+                            }
+                            $(this).parent().next().html("").append(adr);
+                        }
+                        $(this).parent().next().show();
+                    }else{
+                        _this.$address.find(".address-con").hide();
+                    }
+                    $(this).parent().hide();
+                }
+            });
+            // 刷新对应地址的下一级地址
+            this.$address.on("click",".list ul",function(){
+                if($(this).hasClass("provincial")){
+                    
+                }else if($(this).hasClass("city")){
+
+                }else if($(this).hasClass("area")){
+
+                }
+            });
         },
         // 获取商品数据
         insertData:function(){
             var _this = this;
             function success(data) {
                 if (data["code"] === "200") {
+                    // 渲染配送地址
+                    _this.insertAddress(JSON.parse(data.address));
+                    // 渲染商品数据
                     data = JSON.parse(data["data"])[0];
                     var imgs = data["imgs"].split(",");
                     _this.$minImg.css("width",imgs.length * 65 + "px");
@@ -196,6 +265,14 @@ var shop = (function(){
                 }
             }
             sendAjax("php/getShop.php", { data: { shopId: `[${_this.shopId}]` }, success: success });
+        },
+        insertAddress:function(address){
+            this.address = address;
+            var pro = [];
+            for(var i = 0; i < address.length; i++){
+                pro.push(`<li><span>${address[i]["proName"]}</span></li>`);
+            }
+            this.$address.find(".provincial").append(pro);
         },
         // 添加到购物车
         addCar:function(id, count) {
