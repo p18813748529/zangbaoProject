@@ -13,7 +13,7 @@ function isLogin(fn,_this){
                     loginStatus = true;
                     $("header .top .top-left").addClass("logined");
                     $("header .top .top-left p em").text(data.username);
-                    shopList = JSON.parse(data.shopCar || "[]");
+                    var shopList = JSON.parse(data.shopCar || "[]");
                     if(shopList.length>0){
                         $(".shop-car em").text(shopList.length);
                     }
