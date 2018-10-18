@@ -5,7 +5,17 @@ const gulp = require("gulp"),
     babel = require('gulp-babel'),
     imagemin = require('gulp-imagemin'),
     cleanCSS = require('gulp-clean-css');
-// 输出所有
+
+/* 创建任务流程
+1、 gulp.task("任务名",function(){
+2、     查找数据源
+3、     执行插件方法
+4、     输出到文件夹
+5、     刷新
+    })
+*/
+
+// 输出所有,app/**/*.* : app下所有的文件夹下的任意名称.任意后缀，用**会自动在dist下创建对应的文件夹
 gulp.task("all",function(){
     gulp.src("app/**/*.*")
     .pipe(gulp.dest("dist"))
@@ -19,8 +29,8 @@ gulp.task("html",function(){
 });
 // 压缩js
 gulp.task("js",function(){
-    gulp.src("app/**/*.js")
-    .pipe(babel({
+    gulp.src("app/**/*.js")         //查找数据源
+    .pipe(babel({                   //调用插件方法
         presets: ['@babel/env']
     }))
     .pipe(uglify())
@@ -49,7 +59,7 @@ gulp.task("watch",function(){
     gulp.watch("app/**/*.{png,jpg,gif}",["img"]);
 });
 // 合并任务
-gulp.task("bulid",["all","html","css","js","img"])
+gulp.task("bulid",["all","html","css","js","img"]);
 // 开启服务器
 gulp.task("connect",function(){
     connect.server({
